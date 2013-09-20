@@ -1,0 +1,42 @@
+mark:
+  name: mark
+  email: mark@raceweb.ca
+  address: 456 fake st
+  city: victoria
+  postal: v9a 7b8
+  phone_home: 250-555-1234
+  phone_cell: 250-555-1234
+  phone_work:
+  # hashed from 'adam_pass'
+  # password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
+  authority: 3
+  born_on: <%= 35.years.ago %>
+
+adam:
+  name: adam
+  email: adam@raceweb.ca
+  address: 123 fake st
+  city: victoria
+  postal: v9a 1l1
+  phone_home: 250-555-1234
+  phone_cell: 250-555-1234
+  phone_work:
+  # hashed from 'adam_pass'
+  # password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
+  authority: 1
+  born_on: <%= 45.years.ago %>
+
+cate:
+  name: cate
+  email: wahinecate@gmail.com
+  address: 321 fake st
+  city: victoria
+  postal: v0b 2l0
+  phone_home: 250-555-4321
+  phone_cell: 250-555-6666
+  phone_work:
+  # hashed from 'adam_pass'
+  # password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
+  authority: 1
+  born_on: <%= 40.years.ago %>
+

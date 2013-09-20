@@ -1,0 +1,27 @@
+mugs:
+  name: mugs
+  breed: boxer
+  colour: brown
+  born_on: <%= 3.years.ago %>
+  person: mark
+
+bullit:
+  name: bullit
+  breed: sheperd/lab
+  colour: white
+  born_on: <%= 4.years.ago %>
+  person: mark
+
+darby:
+  name: darby
+  breed: puggle
+  colour: brown
+  born_on: <%= 5.years.ago %>
+  person: adam
+
+chloe:
+  name: chloe
+  breed: jackshit
+  colour: brown/white
+  born_on: <%= 6.years.ago %>
+  person: cate

@@ -1,0 +1,5 @@
+/.bundle
+config/initializers/secret_token.rb
+/log/*.log
+/tmp
+.DS_Store
