@@ -47,4 +47,3 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'                  # authorization
 gem 'simple_form'             # form builder
 gem 'kaminari'                # pagination
-gem 'bootstrap-sass'
