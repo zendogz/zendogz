@@ -48,3 +48,4 @@ gem 'rspec-rails', group: [:development, :test]
 gem 'cancan'                  # authorization
 gem 'simple_form'             # form builder
 gem 'kaminari'                # pagination
+gem 'redcarpet'

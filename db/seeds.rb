@@ -7,7 +7,7 @@ mark = Person.create(name: 'mark', email: 'mark@raceweb.ca', address: '456 fake 
 # password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
 adam = Person.create(name: 'adam', email: 'adam@raceweb.ca', address: '123 fake st', city: 'victoria', postal: 'v9a 1l1', phone_home: '250-555-1234', phone_cell: '250-555-1234', authority: 1, born_on: 45.years.ago)
 
-if ENV["full"]
+unless ENV["minimal"]
   # hashed from 'adam_pass'
   # password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
   cate = Person.create(name: 'cate', email: 'cate@raceweb.ca', address: '321 fake st', city: 'victoria', postal: 'v0b 2l0', phone_home: '250-555-4321', phone_cell: '250-555-6666', authority: 1, born_on: 40.years.ago)
@@ -26,8 +26,45 @@ if ENV["full"]
   chloe  = Dog.create(name: 'chloe',  breed: 'jackshit', colour: 'brown/white', born_on: 6.years.ago, person: cate)
   chloe_note_1 = Note.create(dog: chloe, note: 'chloe whines too much')
 
-  testimonial_1 = Testimonial.create(from: 'Nancy Giurici (Charley)', body: 'test one body')
-  testimonial_1 = Testimonial.create(from: 'Bruce and Sylvia Pultz (Mugs)', body: 'test two body')
+  test_body_1 = <<-eos
+An h1 header
+============
+
+Here's a numbered list:
+
+ 1. first item
+ 2. second item
+ 3. third item
+
+Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here's a code sample:
+
+    # Let me re-iterate ...
+    for i in 1 .. 10 { do-something(i) }
+
+As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:
+eos
+
+  test_body_2 = <<-eos
+An h2 header
+------------
+
+Paragraphs are separated by a blank line.
+
+2nd paragraph. *Italic*, **bold**, `monospace`. Itemized lists
+look like:
+
+  * this one
+  * that one
+  * the other one
+
+Note that --- not considering the asterisk --- the actual text
+content starts at 4-columns in.
+eos
+
+  testimonial_1 = Testimonial.create(from: 'Nancy Giurici (Charley)', body: test_body_1)
+  testimonial_1 = Testimonial.create(from: 'Bruce and Sylvia Pultz (Mugs)', body: test_body_2)
 
 
   course_1 = Course.create(name: 'course one', description: 'course one description')
