@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    @testimonials = Testimonial.all.to_a
   end
 
   def about
