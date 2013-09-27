@@ -45,7 +45,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'debugger',    group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]
 
-gem 'cancan'                  # authorization
-gem 'simple_form'             # form builder
-gem 'kaminari'                # pagination
-gem 'redcarpet'
+gem 'cancan'               # authorization
+gem 'simple_form'          # form builder
+gem 'kaminari'             # pagination
+gem 'redcarpet'            # markdown
+gem 'factory_girl_rails'   # test data generation

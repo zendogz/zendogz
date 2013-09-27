@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: course one
-  description: course one description
-
-two:
-  name: course two
-  description: course two description
