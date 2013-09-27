@@ -29,5 +29,8 @@ module Zendogs
       g.javascripts = false
       g.helper = false
     end
+
+    # use spec fixtures
+    ActiveRecord::Tasks::DatabaseTasks.fixtures_path = "#{::Rails.root}/spec/fixtures"
   end
 end
