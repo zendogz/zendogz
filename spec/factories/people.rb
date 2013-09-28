@@ -8,9 +8,4 @@ FactoryGirl.define do
       authority 1
     end
   end
-
-  factory :dog do
-    name "Foo"
-    user
-  end
 end

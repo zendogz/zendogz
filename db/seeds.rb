@@ -27,44 +27,76 @@ unless ENV["minimal"]
   chloe_note_1 = Note.create(dog: chloe, note: 'chloe whines too much')
 
   test_body_1 = <<-eos
-An h1 header
-============
+It is very comforting to know that while we are at work, someone as trustworthy and pet-loving as Mark, is taking care of our lab, Finley. He is reliable, responsive and trustworthy and we would definitely recommend him to anyone looking for pet care or walks. He will truly be impossible to replace and Finn will very much miss the time he spends with Mark and all his dog-buddies.
 
-Here's a numbered list:
+Mandy & Cameron
 
- 1. first item
- 2. second item
- 3. third item
-
-Note again how the actual text starts at 4 columns in (4 characters
-from the left side). Here's a code sample:
-
-    # Let me re-iterate ...
-    for i in 1 .. 10 { do-something(i) }
-
-As you probably guessed, indented 4 spaces. By the way, instead of
-indenting the block, you can use delimited blocks, if you like:
+Also, if anyone wants to talk to us they can call me at 403-831-3542
 eos
 
   test_body_2 = <<-eos
-An h2 header
-------------
-
-Paragraphs are separated by a blank line.
-
-2nd paragraph. *Italic*, **bold**, `monospace`. Itemized lists
-look like:
-
-  * this one
-  * that one
-  * the other one
-
-Note that --- not considering the asterisk --- the actual text
-content starts at 4-columns in.
+I have had the good fortune to have Mark walk my dogs, a golden retriever and a German shepherd for the past year. Mark leads his canine pack with a quiet confidence that is impressive. He is attentive to each dogs personality and to the interactions within the pack creating a harmonious and well behaved group of happy dogs. I have complete trust in Marks ability to care for my dogs and I can unreservedly recommend him.
 eos
 
-  testimonial_1 = Testimonial.create(from: 'Nancy Giurici (Charley)', body: test_body_1)
-  testimonial_1 = Testimonial.create(from: 'Bruce and Sylvia Pultz (Mugs)', body: test_body_2)
+  test_body_3 = <<-eos
+Dear Dog Owner,
+
+It is my pleasure to provide this letter of reference for Mark Johnson of Zen Dogz.
+
+Mark has been indispensable for me and my family in caring for and training my border terrier Zeus. From the very first day that Zeus spent with Mark, I noticed a big improvement in Zeus’ behaviour; he was and continues to be more obedient and able to focus on my commands. Mark’s calm but assertive demeanour instils tremendous confidence in dog owners and dogs alike – he is able to handle a large pack of dogs with ease. Even though Zeus is a high energy dog, I never was concerned that Mark could not deal with Zeus appropriately and I did not worry when Zeus was in Mark’s care.
+
+Mark has done one-on-one training with me and my family, has provided day care, sleepovers and longer term care and I have absolutely no hesitation in recommending him for any of those services.
+
+I am saddened by the fact that Mark is moving and will not be available to care for Zeus but I feel very fortunate to have been able to experience the excellent care that Mark has provided to Zeus over the past year. I am sure Zeus will miss Mark and the “pack” too.
+
+If you would like to speak to me directly about my comments above, please call me at 403-287-7637.
+
+Sincerely,
+Siobhan Goguen
+eos
+
+  test_body_4 = <<-eos
+Dear Mark,
+
+I would like to take this opportunity to thank you for taking care of Charley over the past year. The daily walks for Charley were fantastic as he was such a good dog when I got home from work, it gave me time to make dinner and spend time with my family before our evening walk together. You have been very dependable and so calm, such a great leader for my energetic lab. The dog sitting service was exceptional as I never worried about Charley when he was in your care. He always came home well behaved and tired. He even loved the camping trip you took him on when he was just a pup. I know both Charley and I will miss you immensely. You have been a fantastic pack leader and we wish you and your family all the best!
+eos
+  test_body_5 = <<-eos
+Dear Mark,
+
+Mister Mugs is a changed dog since spending each weekday walking with Mark from Zen Dogz and his "pack". With Marks help he is learning every day as we are. Thank you for all your help!
+
+Sylvia, Bruce & Mister Mugs
+eos
+
+  test_body_6 = <<-eos
+Mark Johnson has worked with and walked my dogs since January 2012.
+
+I have two dogs, both rescues. My older one is 12 years old; the younger one is now 17 months old. The younger dog is very gentle, but large (80lbs) and strong. He was not quite a year old when Mark began working with him. The older dog is high energy and has never learned to walk without pulling on the leash.
+
+At the time I met Mark I was looking for a trainer/walker as I was feeling frustrated in trying to walk both dogs. Neither of them walked properly on leash, and no matter what I tried I could not teach them. It was too difficult walking them together, so I ended up walking them one at a time. (Good exercise for me, but very time consuming). It was also very frustrating in finding a dog walker who I trusted and who had similar expectations in terms of training and disciplining my dogs.
+
+How I met Mark and decided to hire him is an interesting story. I have a job that offers me some flexibility in terms of my work day. One morning, I worked from home until late morning. When I was leaving my home I witnessed something that IMMEDIATLEY made me decide to hire Mark.
+
+As I was backing my vehicle out of my driveway, I saw the most amazing thing: Mark was loading up his pack in my neighborhood after their daily walk. But here is what I almost could not believe. That day, I think he had ten (10) dogs (various sizes, breeds, and colors). All ten were leashed and sitting on the sidewalk. Mark was loading them into his van. All of the dogs were quite, sitting, and well-behaved. I could not believe my eyes. I remained in my vehicle and watched Mark load the dogs. None misbehaved. Mark was calm, and the dogs responded on cue. Just as Mark loaded the last dog, I drove up to where his van was parked and began to chat about what I just witnessed. Mark smiled as he modestly explained his business and his obvious skill in handling dogs. I asked Mark if he had time to work with my dogs, and luckily for me, he did.
+
+During a consultation with Mark, he had both my dogs walking properly on the leash in less than one hour. Mark also shared some tips on how I could work with my dogs. I saw results within a couple of weeks.
+
+Because I have a demanding job, I hired Mark to walk my dogs three times a week. My dogs responded very well to him and are much better behaved. I can now walk both my dogs by myself (without having my arms yanked from their sockets).
+
+Mark is a skilled dog handler. He is calm and confident. He manages his business very professionally. He communicates any concerns he has or changes to his schedule well in advance of the change. He is punctual. He is willing to answer questions and to accommodate requests. Mark is a very personable individual, and he is genuine and trustworthy.
+
+I highly recommend Mark to handle, work with, and walk your dogs.
+
+Sincerely,
+Kim Lambrecht
+eos
+
+  testimonial_1 = Testimonial.create(from: 'Mandy and Cam Dinning (Finn)', body: test_body_1)
+  testimonial_2 = Testimonial.create(from: 'Kim Nixon (Echo and Nova)', body: test_body_2)
+  testimonial_3 = Testimonial.create(from: 'Siobhan Goguen (Zeus)', body: test_body_3)
+  testimonial_4 = Testimonial.create(from: 'Nancy Giurici (Charley)', body: test_body_4)
+  testimonial_5 = Testimonial.create(from: 'Bruce and Sylvia Pultz (Mugs)', body: test_body_5)
+  testimonial_6 = Testimonial.create(from: 'Kim Lambrecht (Tuk and Barley)', body: test_body_6)
 
 
   course_1 = Course.create(name: 'course one', description: 'course one description')

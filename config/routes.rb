@@ -1,5 +1,7 @@
 Zendogs::Application.routes.draw do
 
+  resources :testimonials
+
   resources :courses
 
   %w[home about services contact].each do |page|
