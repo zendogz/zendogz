@@ -7,7 +7,7 @@
 
 <p>
   <strong>Body:</strong>
-  <%= @testimonial.body %>
+  <%= markdown(@testimonial.body) %>
 </p>
 
 <%= link_to 'Edit', edit_testimonial_path(@testimonial) %> |

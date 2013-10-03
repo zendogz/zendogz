@@ -1,29 +1,22 @@
-<h1>Listing testimonials</h1>
+<h1>testimonials</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>From</th>
-      <th>Body</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @testimonials.each do |testimonial| %>
-      <tr>
-        <td><%= testimonial.from %></td>
-        <td><%= testimonial.body %></td>
-        <td><%= link_to 'Show', testimonial %></td>
-        <td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
-        <td><%= link_to 'Destroy', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<% @testimonials.each do |testimonial| %>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><%= testimonial.from %>
+                        <span class="small pull-right"><%= testimonial.created_at %></span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <%= markdown(testimonial.body) %>
+                    <%= link_to 'Show', testimonial %> ::
+                    <%= link_to 'Edit', edit_testimonial_path(testimonial) %> ::
+                    <%= link_to 'Destroy', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
 <%= link_to 'New Testimonial', new_testimonial_path %>
