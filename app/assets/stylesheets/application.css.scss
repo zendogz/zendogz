@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap
  *= require_tree .
  */
 
@@ -23,4 +22,8 @@ body {
 
 footer {
     padding: 30px 0;
+}
+
+.input-group {
+    margin-bottom: 1.2em;
 }

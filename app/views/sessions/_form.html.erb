@@ -1,0 +1,32 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+
+        <%= form_tag(sessions_path) do %>
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">log in</h4>
+            </div> <!-- end .modal-header -->
+
+            <div class="modal-body">
+
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <%= text_field_tag('email', nil, class: 'form-control', placeholder: 'email') %>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">#</span>
+                    <%= password_field_tag('password', nil, class: 'form-control', placeholder: 'password') %>
+                </div>
+
+            </div> <!-- end .modal-body -->
+
+            <div class="modal-footer">
+                <%# link_to "forgotten password?", new_password_reset_path %>
+                <%= submit_tag 'log in', class: 'btn btn-primary' %>
+            </div> <!-- end .modal-footer -->
+
+        <% end %> <!-- end .form-horizontal -->
+    </div> <!-- end .modal-content -->
+</div> <!-- end .modal-dialog -->

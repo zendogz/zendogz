@@ -50,3 +50,5 @@ gem 'simple_form'          # form builder
 gem 'kaminari'             # pagination
 gem 'redcarpet'            # markdown
 gem 'factory_girl_rails'   # test data generation
+
+gem 'devise'

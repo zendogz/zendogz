@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
     has_many :dogs
-    validates :name, presence: true
-    validates :email, presence: true
+    has_secure_password
+    validates_uniqueness_of :email
 end

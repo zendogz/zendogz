@@ -3,6 +3,7 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string :name
       t.string :email
+      t.string :password_digest
       t.string :address
       t.string :city
       t.string :postal
@@ -16,3 +17,4 @@ class CreatePeople < ActiveRecord::Migration
     end
   end
 end
+

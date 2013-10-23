@@ -1,5 +1,11 @@
 Zendogs::Application.routes.draw do
 
+  get 'register', to: 'people#new', as: 'register'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :sessions
+
   resources :testimonials
 
   resources :courses

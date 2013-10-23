@@ -1,16 +1,45 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-# hashed from 'adam_pass'
-# password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
-mark = Person.create(name: 'mark', email: 'mark@raceweb.ca', address: '456 fake st', city: 'victoria', postal: 'v9a 7b8', phone_home: '250-555-1234', phone_cell: '250-555-1234', authority: 3, born_on: 35.years.ago)
-# hashed from 'adam_pass'
-# password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
-adam = Person.create(name: 'adam', email: 'adam@raceweb.ca', address: '123 fake st', city: 'victoria', postal: 'v9a 1l1', phone_home: '250-555-1234', phone_cell: '250-555-1234', authority: 1, born_on: 45.years.ago)
+mark = Person.create(
+  name: 'mark',
+  email: 'mark@raceweb.ca',
+  # hashed from 'adam_pass'
+  password_digest: '$2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS',
+  address: '456 fake st',
+  city: 'victoria',
+  postal: 'v9a 7b8',
+  phone_home: '250-555-1234',
+  phone_cell: '250-555-1234',
+  authority: 3,
+  born_on: 35.years.ago)
+
+adam = Person.create(
+  name: 'adam',
+  email: 'adam@raceweb.ca',
+  # hashed from 'adam_pass'
+  password_digest: '$2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS',
+  address: '123 fake st',
+  city: 'victoria',
+  postal: 'v9a 1l1',
+  phone_home: '250-555-1234',
+  phone_cell: '250-555-1234',
+  authority: 1,
+  born_on: 45.years.ago)
 
 unless ENV["minimal"]
+
+  cate = Person.create(
+  name: 'cate',
+  email: 'cate@raceweb.ca',
   # hashed from 'adam_pass'
-  # password_digest: $2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS
-  cate = Person.create(name: 'cate', email: 'cate@raceweb.ca', address: '321 fake st', city: 'victoria', postal: 'v0b 2l0', phone_home: '250-555-4321', phone_cell: '250-555-6666', authority: 1, born_on: 40.years.ago)
+  password_digest: '$2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS',
+  address: '321 fake st',
+  city: 'victoria',
+  postal: 'v0b 2l0',
+  phone_home: '250-555-4321',
+  phone_cell: '250-555-6666',
+  authority: 1,
+  born_on: 40.years.ago)
 
   mugs   = Dog.create(name: 'mugs',   breed: 'boxer', colour: 'brown', born_on: 3.years.ago, person: mark)
   mugs_note_1 = Note.create(dog: mugs, note: 'very stinky wierdo who likes to choke himself')

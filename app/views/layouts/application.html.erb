@@ -12,6 +12,10 @@
 
     <body>
 
+        <!-- hidden elements -->
+        <div id="register-form" class="modal fade"></div>
+        <div id="log-in-form" class="modal fade"></div>
+
         <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -33,10 +37,24 @@
                         <li><%= link_to 'Testimonials', testimonials_path %></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
+                <ul class="nav navbar-nav navbar-right">
+
+                    <% if current_user %>
+                        <li>welcome <strong><%= link_to current_user.email, edit_person_path(current_user) %></strong> |</li>
+                        <li><%= link_to "logout", logout_path %></li>
+                    <% else %>
+                        <li><%= link_to "register", register_path %> |</li>
+                        <li><%= link_to "login", login_path, remote: true %></li>
+                    <% end %>
+
+                </ul>
             </div><!-- /.container -->
         </nav>
 
         <div class="container">
+
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
 
             <%= yield %>
 

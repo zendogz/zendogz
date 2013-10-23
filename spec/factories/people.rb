@@ -1,11 +1,16 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
 FactoryGirl.define do
   factory :person do
-    sequence(:name) { |n| "foo#{n}" }
-    email { "#{name}@raceweb.ca" }
-    authority 3
-
-    factory :admin do
-      authority 1
-    end
+    name "MyString"
+    email "MyString"
+    address "MyString"
+    city "MyString"
+    postal "MyString"
+    phone_home "MyString"
+    phone_cell "MyString"
+    phone_work "MyString"
+    integer ""
+    date ""
   end
 end
