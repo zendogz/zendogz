@@ -15,3 +15,10 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+// hide success messages after 3 seconds
+window.setTimeout(function() {
+    $(".alert-success").fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove();
+    });
+}, 3000);

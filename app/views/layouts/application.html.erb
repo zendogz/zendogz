@@ -36,25 +36,31 @@
                         <li><%= link_to 'Courses', courses_path %></a></li>
                         <li><%= link_to 'Testimonials', testimonials_path %></a></li>
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if current_user %>
+                            <li>welcome <strong><%= link_to current_user.email, edit_person_path(current_user) %></strong> |</li>
+                            <li><%= link_to "logout", logout_path %></li>
+                        <% else %>
+                            <li><%= link_to "register", register_path %> |</li>
+                            <li><%= link_to "login", login_path, remote: true %></li>
+                        <% end %>
+                    </ul>
                 </div><!-- /.navbar-collapse -->
-                <ul class="nav navbar-nav navbar-right">
 
-                    <% if current_user %>
-                        <li>welcome <strong><%= link_to current_user.email, edit_person_path(current_user) %></strong> |</li>
-                        <li><%= link_to "logout", logout_path %></li>
-                    <% else %>
-                        <li><%= link_to "register", register_path %> |</li>
-                        <li><%= link_to "login", login_path, remote: true %></li>
-                    <% end %>
-
-                </ul>
             </div><!-- /.container -->
         </nav>
 
         <div class="container">
 
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
+            <!-- flash messages -->
+            <% flash.each do |key, value| %>
+                <div class="alert alert-block alert-<%= key == :notice ? "success" : key %>" data-dismiss="alert">
+                    <a class="close">×</a>
+                    <h4 class="alert-heading"><%= key %>:</h4>
+                    <%= value %>
+                </div>
+            <% end %>
 
             <%= yield %>
 
