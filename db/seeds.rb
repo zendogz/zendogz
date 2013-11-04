@@ -3,27 +3,29 @@
 mark = Person.create(
   name: 'mark',
   email: 'mark@raceweb.ca',
-  # hashed from 'adam_pass'
-  password_digest: '$2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS',
+  password: 'pass',
+  password_confirmation: 'pass',
   address: '456 fake st',
   city: 'victoria',
   postal: 'v9a 7b8',
   phone_home: '250-555-1234',
   phone_cell: '250-555-1234',
-  authority: 3,
+  # admin, owner, user
+  authority: 7,
   born_on: 35.years.ago)
 
 adam = Person.create(
   name: 'adam',
   email: 'adam@raceweb.ca',
-  # hashed from 'adam_pass'
-  password_digest: '$2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS',
+  password: 'pass',
+  password_confirmation: 'pass',
   address: '123 fake st',
   city: 'victoria',
   postal: 'v9a 1l1',
   phone_home: '250-555-1234',
   phone_cell: '250-555-1234',
-  authority: 1,
+  # owner, user
+  authority: 6,
   born_on: 45.years.ago)
 
 unless ENV["minimal"]
@@ -31,14 +33,15 @@ unless ENV["minimal"]
   cate = Person.create(
   name: 'cate',
   email: 'cate@raceweb.ca',
-  # hashed from 'adam_pass'
-  password_digest: '$2a$10$MuZ/FSYjDkIim0zFodiV1OjpgDRzKSpnHQtykmm.JQSVGq3JE7BJS',
+  password: 'pass',
+  password_confirmation: 'pass',
   address: '321 fake st',
   city: 'victoria',
   postal: 'v0b 2l0',
   phone_home: '250-555-4321',
   phone_cell: '250-555-6666',
-  authority: 1,
+  # user
+  authority: 4,
   born_on: 40.years.ago)
 
   mugs   = Dog.create(name: 'mugs',   breed: 'boxer', colour: 'brown', born_on: 3.years.ago, person: mark)
@@ -89,6 +92,7 @@ Dear Mark,
 
 I would like to take this opportunity to thank you for taking care of Charley over the past year. The daily walks for Charley were fantastic as he was such a good dog when I got home from work, it gave me time to make dinner and spend time with my family before our evening walk together. You have been very dependable and so calm, such a great leader for my energetic lab. The dog sitting service was exceptional as I never worried about Charley when he was in your care. He always came home well behaved and tired. He even loved the camping trip you took him on when he was just a pup. I know both Charley and I will miss you immensely. You have been a fantastic pack leader and we wish you and your family all the best!
 eos
+
   test_body_5 = <<-eos
 Dear Mark,
 

@@ -1,10 +1,9 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
   end
 
   # GET /notes/1
@@ -14,7 +13,6 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
   end
 
   # GET /notes/1/edit
@@ -24,7 +22,6 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
 
     respond_to do |format|
       if @note.save
@@ -62,10 +59,6 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params

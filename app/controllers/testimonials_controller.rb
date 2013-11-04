@@ -1,10 +1,9 @@
 class TestimonialsController < ApplicationController
-  before_action :set_testimonial, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /testimonials
   # GET /testimonials.json
   def index
-    @testimonials = Testimonial.all
   end
 
   # GET /testimonials/1
@@ -14,7 +13,6 @@ class TestimonialsController < ApplicationController
 
   # GET /testimonials/new
   def new
-    @testimonial = Testimonial.new
   end
 
   # GET /testimonials/1/edit
@@ -24,8 +22,6 @@ class TestimonialsController < ApplicationController
   # POST /testimonials
   # POST /testimonials.json
   def create
-    @testimonial = Testimonial.new(testimonial_params)
-
     respond_to do |format|
       if @testimonial.save
         format.html { redirect_to @testimonial, notice: 'Testimonial was successfully created.' }
@@ -62,10 +58,6 @@ class TestimonialsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_testimonial
-      @testimonial = Testimonial.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testimonial_params
