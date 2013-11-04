@@ -31,8 +31,9 @@
     </div>
     <div class="form-group">
         <%= f.label :born_on, 'born', class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-            <%= f.text_field :born_on, class: 'form-control' %>
+        <div class="col-md-8 input-group">
+            <%= f.text_field :born_on, class: 'form-control datepicker' %>
+            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
         </div>
     </div>
     <div class="form-group">

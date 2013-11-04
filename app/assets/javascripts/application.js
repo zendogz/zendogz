@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require datepicker
 //= require_tree .
 
 // hide success messages after 3 seconds
@@ -22,3 +23,9 @@ window.setTimeout(function() {
         $(this).remove();
     });
 }, 3000);
+
+$(function() {
+    $('.datepicker').datepicker({
+        format: "yyyy-mm-dd"
+    })
+});
