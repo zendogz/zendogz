@@ -6,7 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-title"><%= testimonial.from %>
-                        <span class="small pull-right"><%= testimonial.created_at %></span>
+                        <span class="small pull-right"><%= distance_of_time_in_words(testimonial.created_at, Time.now) %> ago</span>
                     </div>
                 </div>
                 <div class="panel-body">

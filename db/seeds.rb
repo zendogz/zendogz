@@ -124,12 +124,12 @@ Sincerely,
 Kim Lambrecht
 eos
 
-  testimonial_1 = Testimonial.create(from: 'Mandy and Cam Dinning (Finn)', body: test_body_1)
-  testimonial_2 = Testimonial.create(from: 'Kim Nixon (Echo and Nova)', body: test_body_2)
-  testimonial_3 = Testimonial.create(from: 'Siobhan Goguen (Zeus)', body: test_body_3)
-  testimonial_4 = Testimonial.create(from: 'Nancy Giurici (Charley)', body: test_body_4)
-  testimonial_5 = Testimonial.create(from: 'Bruce and Sylvia Pultz (Mugs)', body: test_body_5)
-  testimonial_6 = Testimonial.create(from: 'Kim Lambrecht (Tuk and Barley)', body: test_body_6)
+  testimonial_1 = Testimonial.create(from: 'Mandy and Cam Dinning (Finn)', body: test_body_1, created_at: 1.hours.ago)
+  testimonial_2 = Testimonial.create(from: 'Kim Nixon (Echo and Nova)', body: test_body_2, created_at: 1.days.ago)
+  testimonial_3 = Testimonial.create(from: 'Siobhan Goguen (Zeus)', body: test_body_3, created_at: 1.weeks.ago)
+  testimonial_4 = Testimonial.create(from: 'Nancy Giurici (Charley)', body: test_body_4, created_at: 1.months.ago)
+  testimonial_5 = Testimonial.create(from: 'Bruce and Sylvia Pultz (Mugs)', body: test_body_5, created_at: 3.months.ago)
+  testimonial_6 = Testimonial.create(from: 'Kim Lambrecht (Tuk and Barley)', body: test_body_6, created_at: 1.years.ago)
 
 
   course_1 = Course.create(name: 'course one', description: 'course one description')
