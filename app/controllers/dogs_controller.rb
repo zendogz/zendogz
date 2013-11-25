@@ -1,28 +1,31 @@
 class DogsController < ApplicationController
-  load_and_authorize_resource
 
   # GET /dogs
   # GET /dogs.json
   def index
+    @dogs = Dog.all
   end
 
   # GET /dogs/1
   # GET /dogs/1.json
   def show
+    @dog = Dog.find(params[:id])
   end
 
   # GET /dogs/new
   def new
+    @dog = Dog.new
   end
 
   # GET /dogs/1/edit
   def edit
+    @dog = Dog.find(params[:id])
   end
 
   # POST /dogs
   # POST /dogs.json
   def create
-
+    @dog = Dog.new(course_params)
     respond_to do |format|
       if @dog.save
         format.html { redirect_to @dog, notice: 'Dog was successfully created.' }
@@ -37,6 +40,7 @@ class DogsController < ApplicationController
   # PATCH/PUT /dogs/1
   # PATCH/PUT /dogs/1.json
   def update
+    @dog = Dog.find(params[:id])
     respond_to do |format|
       if @dog.update(dog_params)
         format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
@@ -51,6 +55,7 @@ class DogsController < ApplicationController
   # DELETE /dogs/1
   # DELETE /dogs/1.json
   def destroy
+    @dog = Dog.find(params[:id])
     @dog.destroy
     respond_to do |format|
       format.html { redirect_to dogs_url }

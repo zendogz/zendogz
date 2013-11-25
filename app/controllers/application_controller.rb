@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  delegate :allow?, to: :current_permission
-  helper_method :current_user, :allow?
+  delegate :can?, to: :current_permission
+  helper_method :current_user, :can?
 
   private
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authorize
-      if !current_permission.allow?(params[:controller], params[:action])
+      if !current_permission.can?(params[:controller], params[:action])
         redirect_to root_url, alert: "Not authorized."
       end
     end

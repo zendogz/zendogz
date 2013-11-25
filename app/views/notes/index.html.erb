@@ -14,9 +14,9 @@
     <% @notes.each do |note| %>
       <tr>
         <td><%= note.note %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', dog_note_path(@dog, note) %></td>
+        <td><%= link_to 'Edit', edit_dog_note_path(@dog, note) %></td>
+        <td><%= link_to 'Destroy', dog_note_path(@dog, note), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Note', new_note_path %>
+<%= link_to 'New Note', new_dog_note_path(@dog) %>

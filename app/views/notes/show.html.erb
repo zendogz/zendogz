@@ -5,5 +5,5 @@
   <%= @note.note %>
 </p>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to 'Edit', edit_dog_note_path(@note.dog, @note) %> |
+<%= link_to 'Back', dog_notes_path(@note.dog) %>

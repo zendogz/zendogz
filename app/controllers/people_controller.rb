@@ -1,5 +1,4 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   # GET /people
   # GET /people.json
@@ -10,6 +9,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @person = Person.find(params[:id])
   end
 
   # GET /people/new
@@ -19,6 +19,7 @@ class PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
+    @person = Person.find(params[:id])
   end
 
   # POST /people
@@ -40,6 +41,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
+    @person = Person.find(params[:id])
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
@@ -55,6 +57,7 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     @person.destroy
+    @person = Person.find(params[:id])
     respond_to do |format|
       format.html { redirect_to people_url }
       format.json { head :no_content }
@@ -62,10 +65,6 @@ class PeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params

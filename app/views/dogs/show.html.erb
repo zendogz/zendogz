@@ -20,5 +20,15 @@
   <%= @dog.born_on %>
 </p>
 
+<p>
+  <strong>Notes:</strong>
+</p>
+<ul>
+    <% @dog.notes.each do |note| %>
+        <li><%= note.note %></li>
+    <% end %>
+</ul>
+
+
 <%= link_to 'Edit', edit_dog_path(@dog) %> |
 <%= link_to 'Back', dogs_path %>

@@ -1,5 +1,5 @@
 class Permission < Struct.new(:user)
-  def allow?(controller, action)
+  def can?(controller, action)
     if user
       return true if user.role?(:admin)
       return true if controller == "people" && action.in?(%w[show edit update])

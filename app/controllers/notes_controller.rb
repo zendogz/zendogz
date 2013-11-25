@@ -1,26 +1,29 @@
 class NotesController < ApplicationController
-  load_and_authorize_resource
 
-  # GET /notes
-  # GET /notes.json
+  # GET /dogs/:dog_id/notes
+  # GET /dogs/:dog_id/notes.json
   def index
+    @dog = Dog.find(params[:dog_id])
+    @notes = @dog.notes
   end
 
-  # GET /notes/1
-  # GET /notes/1.json
+  # GET /dogs/:dog_id/notes/:id
+  # GET /dogs/:dog_id/notes/:id.json
   def show
+    @note = Note.find(params[:id])
+
   end
 
-  # GET /notes/new
+  # GET /dogs/:dog_id/notes/new
   def new
   end
 
-  # GET /notes/1/edit
+  # GET /dogs/:dog_id/notes/:id/edit
   def edit
   end
 
-  # POST /notes
-  # POST /notes.json
+  # POST /dogs/:dog_id/notes
+  # POST /dogs/:dog_id/notes.json
   def create
 
     respond_to do |format|
@@ -34,8 +37,8 @@ class NotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notes/1
-  # PATCH/PUT /notes/1.json
+  # PATCH/PUT /dogs/:dog_id/notes/:id
+  # PATCH/PUT /dogs/:dog_id/notes/:id.json
   def update
     respond_to do |format|
       if @note.update(note_params)
@@ -48,8 +51,8 @@ class NotesController < ApplicationController
     end
   end
 
-  # DELETE /notes/1
-  # DELETE /notes/1.json
+  # DELETE /dogs/:dog_id/notes/:id
+  # DELETE /dogs/:dog_id/notes/:id.json
   def destroy
     @note.destroy
     respond_to do |format|

@@ -30,4 +30,6 @@
 
 <br>
 
-<%= link_to 'New Dog', new_dog_path %>
+<% if can? :create, Dog %>
+  <%= link_to 'New Dog', new_dog_path %>
+<% end %>

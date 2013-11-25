@@ -1,27 +1,31 @@
 class CoursesController < ApplicationController
-  load_and_authorize_resource
 
   # GET /courses
   # GET /courses.json
   def index
+    @courses = Course.all
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course = Course.find(params[:id])
   end
 
   # GET /courses/new
   def new
+    @course = Course.new
   end
 
   # GET /courses/1/edit
   def edit
+    @course = Course.find(params[:id])
   end
 
   # POST /courses
   # POST /courses.json
   def create
+    @course = Course.new(course_params)
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -36,6 +40,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    @course = Course.find(params[:id])
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -50,6 +55,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    @course = Course.find(params[:id])
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url }

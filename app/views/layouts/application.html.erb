@@ -57,10 +57,16 @@
 
         <div class="container">
 
+            <%= current_user.roles if current_user %>
+
             <!-- flash messages -->
             <% flash.each do |key, value| %>
-                <div class="alert alert-block alert-<%= key == :notice ? "success" : key %>" data-dismiss="alert">
-                    <a class="close">×</a>
+                <%
+                    cls = 'danger' if key.to_s.eql?('alert')
+                    cls = 'success' if key.to_s.eql?('notice')
+                %>
+                <div class="alert alert-block alert-dismissable alert-<%= cls %>">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4 class="alert-heading"><%= key %>:</h4>
                     <%= value %>
                 </div>

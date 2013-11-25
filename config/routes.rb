@@ -14,11 +14,11 @@ Zendogs::Application.routes.draw do
     get page, controller: "pages", action: page
   end
 
-  resources :notes
-
   resources :people
 
-  resources :dogs
+  resources :dogs do
+    resources :notes
+  end
 
   root to: 'pages#home'
 

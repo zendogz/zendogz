@@ -1,27 +1,31 @@
 class TestimonialsController < ApplicationController
-  load_and_authorize_resource
 
   # GET /testimonials
   # GET /testimonials.json
   def index
+    @testimonial = Testimonial.all
   end
 
   # GET /testimonials/1
   # GET /testimonials/1.json
   def show
+    @testimonial = Testimonial.find(params[:id])
   end
 
   # GET /testimonials/new
   def new
+    @testimonial = Testimonial.new
   end
 
   # GET /testimonials/1/edit
   def edit
+    @testimonial = Testimonial.find(params[:id])
   end
 
   # POST /testimonials
   # POST /testimonials.json
   def create
+    @testimonial = Testimonial.new(testimonial_params)
     respond_to do |format|
       if @testimonial.save
         format.html { redirect_to @testimonial, notice: 'Testimonial was successfully created.' }
@@ -36,6 +40,7 @@ class TestimonialsController < ApplicationController
   # PATCH/PUT /testimonials/1
   # PATCH/PUT /testimonials/1.json
   def update
+    @testimonial = Testimonial.find(params[:id])
     respond_to do |format|
       if @testimonial.update(testimonial_params)
         format.html { redirect_to @testimonial, notice: 'Testimonial was successfully updated.' }
@@ -50,6 +55,7 @@ class TestimonialsController < ApplicationController
   # DELETE /testimonials/1
   # DELETE /testimonials/1.json
   def destroy
+    @testimonial = Testimonial.find(params[:id])
     @testimonial.destroy
     respond_to do |format|
       format.html { redirect_to testimonials_url }
