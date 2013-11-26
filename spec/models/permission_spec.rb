@@ -26,12 +26,15 @@ describe Permission do
   end
 
   context 'when logged in as an owner' do
-    subject do
-      p = Person.new(name: 'foo', roles: ['owner'])
-      Permission.new(p)
-    end
-    it 'allows dogs actions' do subject.can?('dogs').should be_true end
-    it 'allows notes actions' do subject.can?('notes').should be_true end
+    let(:owner) { create(:person, roles: ['owner']) }
+    let(:owner_dog) { build(:dog, person: owner) }
+    let(:other_dog) { build(:dog) }
+    subject { Permission.new(owner) }
+    it 'allows dogs new' do subject.can?(:dogs, :new).should be_true end
+    it 'allows dogs create' do subject.can?(:dogs, :create).should be_true end
+    it 'denies dogs edit' do subject.can?(:dogs, :edit).should_not be_true end
+    it 'allows edit own dogs' do subject.can?(:dogs, :edit, :owner_dog).should be_true end
+    it 'denies edit others dogs' do subject.can?(:dogs, :edit, :other_dog).should_not be_true end
   end
 
   context 'when logged in as an admin' do
@@ -42,7 +45,5 @@ describe Permission do
 
     it 'allows all controllers and actions' do subject.can?('dogs', 'destroy').should be_true end
   end
-
-
 
 end
