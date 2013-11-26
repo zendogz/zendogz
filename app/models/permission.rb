@@ -1,18 +1,39 @@
-class Permission < Struct.new(:user)
-  def can?(controller, action)
+# example data structure for @allowed actions:
+# { ['dogs','create'] => true, ['dogs','update'] => true, ['pages', 'all'] => true }
+
+class Permission
+
+  def initialize(user)
     if user
-      return true if user.role?(:admin)
-      return true if controller == "people" && action.in?(%w[show edit update])
+      allow_all if user.role?(:admin)
+      allow :people, [:show, :edit, :update]
       if user.role?(:owner)
-        return true if controller == "dogs"
-        return true if controller == "notes"
+        allow :dogs
+        allow :notes
       end
     end
-    return true if controller == "pages"
-    return true if controller == "sessions"
-    return true if controller == "people" && action.in?(%w[new create])
-    return true if controller == "testimonials" && action.in?(%w[index show])
-    return true if controller == "courses" && action.in?(%w[index show])
-    false
+    allow :pages
+    allow :sessions
+    allow :people, [:new, :create]
+    allow :testimonials, [:index, :show]
+    allow :courses, [:index, :show]
+  end
+
+  def allow_all
+    @allow_all = true
+  end
+
+  def allow(controller, actions = :all, resource = nil)
+    @allowed_actions ||= {}
+    if controller
+      Array(actions).each do |action|
+        @allowed_actions[[controller.to_s, action.to_s]] = true
+      end
+    end
+  end
+
+  def can?(controller, action = :all)
+    can = @allow_all || @allowed_actions[[controller.to_s, action.to_s]]
+    can && (can == true || resource && allowed.call(resource))
   end
 end
