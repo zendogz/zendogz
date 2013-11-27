@@ -32,8 +32,9 @@ class Permission
     end
   end
 
-  def can?(controller, action = :all)
+  def can?(controller, action = nil, resource = nil)
+    action = :all unless action
     can = @allow_all || @allowed_actions[[controller.to_s, action.to_s]]
-    can && (can == true || resource && allowed.call(resource))
+    can && (can == true || resource && can.call(resource))
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Permission do
 
-  context 'when not logged in' do
+  describe 'when not logged in' do
     subject { Permission.new(nil) }
     it 'allows sessions actions' do subject.can?('sessions').should be_true end
     it 'allows all pages' do subject.can?('pages').should be_true end
@@ -16,7 +16,7 @@ describe Permission do
     it 'denies updating people' do subject.can?('people', 'update').should_not be_true end
   end
 
-  context 'when logged in as a user' do
+  describe 'when logged in as a user' do
     subject do
       p = Person.new(name: 'foo', roles: ['user'])
       Permission.new(p)
@@ -25,19 +25,19 @@ describe Permission do
     it 'allows updating people' do subject.can?('people', 'update').should be_true end
   end
 
-  context 'when logged in as an owner' do
+  describe 'when logged in as an owner' do
     let(:owner) { create(:person, roles: ['owner']) }
     let(:owner_dog) { build(:dog, person: owner) }
     let(:other_dog) { build(:dog) }
     subject { Permission.new(owner) }
     it 'allows dogs new' do subject.can?(:dogs, :new).should be_true end
-    it 'allows dogs create' do subject.can?(:dogs, :create).should be_true end
+    it 'allows dogs create' do puts subject.inspect; subject.can?(:dogs, :create).should be_true end
     it 'denies dogs edit' do subject.can?(:dogs, :edit).should_not be_true end
     it 'allows edit own dogs' do subject.can?(:dogs, :edit, :owner_dog).should be_true end
     it 'denies edit others dogs' do subject.can?(:dogs, :edit, :other_dog).should_not be_true end
   end
 
-  context 'when logged in as an admin' do
+  describe 'when logged in as an admin' do
     subject do
       p = Person.new(name: 'foo', roles: ['admin'])
       Permission.new(p)
