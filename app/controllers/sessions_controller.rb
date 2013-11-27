@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    logger.info('new action...');
   end
 
   def create

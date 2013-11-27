@@ -69,4 +69,9 @@ class TestimonialsController < ApplicationController
     def testimonial_params
       params.require(:testimonial).permit(:from, :body)
     end
+
+    def current_resource
+      @current_resource ||= Testimonial.find(params[:id]) if params[:id]
+    end
+
 end

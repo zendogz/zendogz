@@ -25,7 +25,7 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
-    @dog = Dog.new(course_params)
+    @dog = Dog.new(dog_params)
     respond_to do |format|
       if @dog.save
         format.html { redirect_to @dog, notice: 'Dog was successfully created.' }
@@ -69,4 +69,9 @@ class DogsController < ApplicationController
     def dog_params
       params.require(:dog).permit(:name, :breed, :colour, :born_on)
     end
+
+    def current_resource
+      @current_resource ||= Dog.find(params[:id]) if params[:id]
+    end
+
 end

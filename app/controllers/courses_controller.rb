@@ -69,4 +69,9 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:name, :description)
     end
+
+    def current_resource
+      @current_resource ||= Course.find(params[:id]) if params[:id]
+    end
+
 end

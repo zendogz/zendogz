@@ -1,35 +1,47 @@
 <h1>Listing dogs</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Breed</th>
-      <th>Colour</th>
-      <th>Born on</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Colour</th>
+            <th>Born on</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
 
-  <tbody>
-    <% @dogs.each do |dog| %>
-      <tr>
-        <td><%= dog.name %></td>
-        <td><%= dog.breed %></td>
-        <td><%= dog.colour %></td>
-        <td><%= dog.born_on %></td>
-        <td><%= link_to 'Show', dog %></td>
-        <td><%= link_to 'Edit', edit_dog_path(dog) %></td>
-        <td><%= link_to 'Destroy', dog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+    <tbody>
+        <% @dogs.each do |dog| %>
+        <tr>
+            <td><%= dog.name %></td>
+            <td><%= dog.breed %></td>
+            <td><%= dog.colour %></td>
+            <td><%= dog.born_on %></td>
+            <td>
+                <% if can? :dogs, :show, dog %>
+                    <%= link_to 'Show', dog %>
+                <% end %>
+            </td>
+            <td>
+                <% if can? :dogs, :edit, dog %>
+                    <%= link_to 'Edit', edit_dog_path(dog) %>
+                <% end %>
+            </td>
+            <td>
+                <% if can? :dogs, :destroy, dog %>
+                    <%= link_to 'Destroy', dog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
 
 <br>
 
-<% if can? :create, Dog %>
-  <%= link_to 'New Dog', new_dog_path %>
+<% if can? :dogs, :create %>
+    <%= link_to 'New Dog', new_dog_path %>
 <% end %>

@@ -10,13 +10,21 @@
         <tr>
             <td><%= course.name %></td>
             <td><%= course.description %></td>
-            <td><%= link_to 'Show', course %></td>
-            <% if can? :update, Course %>
-                <td><%= link_to 'Edit', edit_course_path(course) %></td>
-            <% else %>
-                <td>&nbsp;</td>
-            <% end %>
-            <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+                <% if can? :courses, :show, course %>
+                    <%= link_to 'Show', course %>
+                <% end %>
+            </td>
+            <td>
+                <% if can? :courses, :update, course %>
+                    <%= link_to 'Edit', edit_course_path(course) %>
+                <% end %>
+            </td>
+            <td>
+                <% if can? :courses, :destroy, course %>
+                    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+            </td>
         </tr>
     <% end %>
     </tbody>
@@ -24,6 +32,6 @@
 
 <br>
 
-<% if can? :create, Course %>
+<% if can? :courses, :create %>
     <%= link_to 'New Course', new_course_path %>
 <% end %>

@@ -16,16 +16,20 @@ class NotesController < ApplicationController
 
   # GET /dogs/:dog_id/notes/new
   def new
+    @dog = Dog.find(params[:dog_id])
+    @note = @dog.notes.build(note_params)
   end
 
   # GET /dogs/:dog_id/notes/:id/edit
   def edit
+    @note = Note.find(params[:id])
   end
 
   # POST /dogs/:dog_id/notes
   # POST /dogs/:dog_id/notes.json
   def create
-
+    @dog = Dog.find(params[:dog_id])
+    @note = @dog.notes.build(note_params)
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
@@ -40,6 +44,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /dogs/:dog_id/notes/:id
   # PATCH/PUT /dogs/:dog_id/notes/:id.json
   def update
+    @note = Note.find(params[:id])
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
@@ -54,6 +59,7 @@ class NotesController < ApplicationController
   # DELETE /dogs/:dog_id/notes/:id
   # DELETE /dogs/:dog_id/notes/:id.json
   def destroy
+    @note = Note.find(params[:id])
     @note.destroy
     respond_to do |format|
       format.html { redirect_to notes_url }
@@ -67,4 +73,9 @@ class NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:note)
     end
+
+    def current_resource
+      @current_resource ||= Note.find(params[:id]) if params[:id]
+    end
+
 end
