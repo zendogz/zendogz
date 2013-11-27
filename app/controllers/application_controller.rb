@@ -7,9 +7,6 @@ class ApplicationController < ActionController::Base
   delegate :can?, to: :current_permission
   helper_method :current_user, :can?
 
-  def debug
-  end
-
   private
 
     def current_user
