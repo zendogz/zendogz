@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   delegate :can?, to: :current_permission
   helper_method :current_user, :can?
 
+  def debug
+  end
+
   private
 
     def current_user
@@ -23,7 +26,7 @@ class ApplicationController < ActionController::Base
 
     def authorize
       if !current_permission.can?(params[:controller], params[:action], current_resource)
-        redirect_to root_url, alert: "Not authorized."
+        redirect_to root_url, alert: "Not authorized. #{params[:controller]} #{params[:action]} #{current_resource.inspect}"
       end
     end
 end

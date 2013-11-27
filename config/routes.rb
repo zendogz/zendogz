@@ -3,6 +3,7 @@ Zendogs::Application.routes.draw do
   get 'register', to: 'people#new', as: 'register'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'debug', to: 'debug#index'
 
   resources :sessions
 

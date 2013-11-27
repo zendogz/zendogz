@@ -19,12 +19,13 @@ class Permission
       end
     end
 
-    # not logged in - guest
+    # everybody
     allow :pages, [:home, :about, :services, :contact]
     allow :sessions, [:new, :create, :destroy]
     allow :people, [:new, :create]
     allow :testimonials, [:index, :show]
     allow :courses, [:index, :show]
+    allow :debug, [:index]
   end
 
   def allow_all
