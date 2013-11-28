@@ -8,12 +8,8 @@
 
         <div class="modal-body">
 
-            <p>
-                <%= @current_permission.inspect %>
-            </p>
-            <p>
-                <%= current_user.roles if current_user %>
-            </p>
+            <p><%= @current_permission.inspect %></p>
+            <p><%= current_user.roles if current_user %></p>
 
         </div> <!-- end .modal-body -->
 
