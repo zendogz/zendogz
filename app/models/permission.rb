@@ -1,8 +1,12 @@
-# example data structure for @allowed actions:
-# { ['dogs','create'] => true, ['dogs','update'] => <Proc...>, ['pages', 'contact'] => true }
+#
+# manage authorization for the current user
+#
 
 class Permission
 
+  #
+  # constructor called from application_controller.authorize() which is a before_filter
+  #
   def initialize(user)
     if user
       # logged in
@@ -32,6 +36,10 @@ class Permission
     @allow_all = true
   end
 
+  #
+  # build the hash of allowed actions. the hash will look like this:
+  # { ['dogs','create'] => true, ['dogs','update'] => <Proc...>, ['pages', 'contact'] => true, ... }
+  #
   def allow(controller, actions, &block)
     @allowed_actions ||= {}
     if controller
@@ -41,6 +49,9 @@ class Permission
     end
   end
 
+  #
+  # called from the views to tell if the current user can perform an action
+  #
   def can?(controller, action, resource = nil)
     can = @allow_all || @allowed_actions[[controller.to_s, action.to_s]]
     can && (can == true || resource && can.call(resource))

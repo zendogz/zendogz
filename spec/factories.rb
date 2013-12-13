@@ -15,4 +15,9 @@ FactoryGirl.define do
   factory :dog do
     sequence(:name) { |n| "rex#{n}" }
   end
+
+  factory :course do
+    sequence(:name) { |n| "learn to walk #{n}" }
+    description 'learn to do stuff with your dog'
+  end
 end
