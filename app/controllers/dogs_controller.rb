@@ -3,7 +3,7 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.all
+    @dogs = Dog.for(current_user)
   end
 
   # GET /dogs/1
