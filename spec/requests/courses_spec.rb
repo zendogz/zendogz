@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe 'Courses' do
+describe 'Course requests' do
+
   describe 'GET /courses' do
     it 'lists courses' do
       get courses_path
@@ -67,7 +68,6 @@ describe 'Courses' do
     end
 
     describe 'POST /courses' do
-      let(:course) { build(:course) }
       it 'creates a course' do
         count = Course.count
         post courses_path, {course: {name: 'new course', description: 'new course description'}}
@@ -75,8 +75,7 @@ describe 'Courses' do
         follow_redirect!
         expect(response).to render_template(:show)
         expect(Course.count).to eq(count + 1)
-        expect(response.body).to include('new course description')
-        # test flash msg for: 'Course was successfully created.'
+        expect(response.body).to include('Course was successfully created.')
       end
     end
 
@@ -90,8 +89,7 @@ describe 'Courses' do
         follow_redirect!
         expect(response).to render_template(:show)
         expect(Course.count).to eq(count)
-        expect(response.body).to include('updated description')
-        # test flash msg for: 'Course was successfully updated.'
+        expect(response.body).to include('Course was successfully updated.')
       end
     end
 
@@ -105,8 +103,6 @@ describe 'Courses' do
         follow_redirect!
         expect(response).to render_template(:index)
         expect(Course.count).to eq(count -1)
-        # expect(response.body).to include('updated description')
-        # test flash msg for: 'Course was successfully updated.'
       end
     end
   end
