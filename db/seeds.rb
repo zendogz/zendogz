@@ -133,6 +133,9 @@ eos
 
 
   course_1 = Course.create(name: 'course one', description: 'course one description')
+  lesson_1 = Lesson.create(name: 'sit stay', description: 'teach your dog to sit and stay', handout: 'sit_stay', course: course_1, status_id: 1)
+  lesson_2 = Lesson.create(name: 'lay down', description: 'teach your dog to lay down', handout: 'down', course: course_1, status_id: 1)
+  lesson_3 = Lesson.create(name: 'off leash', description: 'teach your dog to not run away', handout: 'off_leash', course: course_1, status_id: 1)
   course_2 = Course.create(name: 'course two', description: 'course two description')
 
 
