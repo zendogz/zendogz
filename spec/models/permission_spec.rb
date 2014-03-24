@@ -12,12 +12,19 @@ describe Permission do
     it 'allows access to services page' do subject.can?(:pages, :services).should be_true end
     it 'allows access to contact page' do subject.can?(:pages, :contact).should be_true end
     it 'denies access to unknown page' do subject.can?(:pages, :unknown).should_not be_true end
+    #testimonials
     it 'allows listing testimonials' do subject.can?(:testimonials, :index).should be_true end
     it 'allows viewing testimonials' do subject.can?(:testimonials, :show).should be_true end
     it 'denies editing testimonials' do subject.can?(:testimonials, :edit).should_not be_true end
+    # courses
     it 'allows listing courses' do subject.can?(:courses, :index).should be_true end
     it 'allows viewing courses' do subject.can?(:courses, :show).should be_true end
     it 'denies editing courses' do subject.can?(:courses, :edit).should_not be_true end
+    # lessons
+    it 'denies listing lessons' do subject.can?(:lessons, :index).should_not be_true end
+    it 'denies viewing lessons' do subject.can?(:lessons, :show).should_not be_true end
+    it 'denies editing lessons' do subject.can?(:lessons, :edit).should_not be_true end
+    # people
     it 'allows creating people' do subject.can?(:people, :new).should be_true end
     it 'denies updating people' do subject.can?(:people, :update).should_not be_true end
   end
@@ -30,6 +37,16 @@ describe Permission do
     it 'allows updating own profile' do subject.can?('people', 'update', user).should be_true end
     it 'denies editing another profile' do subject.can?('people', 'edit', another_user).should_not be_true end
     it 'denies updating another profile' do subject.can?('people', 'update', another_user).should_not be_true end
+  end
+
+  describe 'when logged in as a student' do
+    # a student is jus a user for now
+    let(:student) { create(:person, roles: ['user']) }
+    subject { Permission.new(student) }
+    # lessons
+    it 'allows listing lessons' do subject.can?(:lessons, :index).should be_true end
+    it 'allows viewing lessons' do subject.can?(:lessons, :show).should be_true end
+    it 'denies editing lessons' do subject.can?(:lessons, :edit).should_not be_true end
   end
 
   describe 'when logged in as an owner' do

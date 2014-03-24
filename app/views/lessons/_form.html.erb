@@ -1,14 +1,48 @@
-<%= simple_form_for(@lesson) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for([@course, @lesson], html: {class: 'form-horizontal'}) do |f| %>
+  <% if @lesson.errors.any? %>
+  <div id="error_explanation">
+        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+        <ul>
+            <% @lesson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+  <% end %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
+    <div class="form-group">
+        <%= f.label :name, class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+            <%= f.text_field :name, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :description, class: 'col-md-2 control-label' %>
+        <div class="col-md-8">
+            <%= f.text_field :description, class: 'form-control' %>
+        </div>
+    </div>
     <%= f.input :handout %>
     <%= f.input :lesson_at %>
+    <div class="form-group">
+        <%= f.label :lesson_at, 'born', class: 'col-md-2 control-label' %>
+        <div class="col-md-8 input-group">
+            <%= f.text_field :lesson_at, class: 'form-control datepicker' %>
+            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+        </div>
+    </div>
     <%= f.input :status %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+  <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+            <%= f.button :submit, class: 'btn btn-primary' %>
+            <%= link_to 'cancel', (@lesson.new_record? ? new_course_lesson_path(@course) : edit_course_lesson_path(@course, @lesson)), class: 'btn btn-link' %>
+        </div>
+    </div>
 <% end %>

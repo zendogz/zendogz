@@ -1,6 +1,6 @@
 Zendogs::Application.routes.draw do
 
-  resources :lessons
+  resources :codes
 
   get 'register', to: 'people#new', as: 'register'
   get 'login', to: 'sessions#new', as: 'login'
@@ -11,7 +11,9 @@ Zendogs::Application.routes.draw do
 
   resources :testimonials
 
-  resources :courses
+  resources :courses do
+    resources :lessons
+  end
 
   %w[home about services contact].each do |page|
     get page, controller: "pages", action: page

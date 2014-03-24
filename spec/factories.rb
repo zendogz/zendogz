@@ -20,4 +20,18 @@ FactoryGirl.define do
     sequence(:name) { |n| "learn to walk #{n}" }
     description 'learn to do stuff with your dog'
   end
+
+  factory :lesson do
+    name "MyString"
+    handout "MyString"
+    lesson_at "2014-03-23 16:32:47"
+    status ""
+  end
+
+  factory :code do
+    set nil
+    code "MyString"
+    description "MyString"
+  end
+
 end

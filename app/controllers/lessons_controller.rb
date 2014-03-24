@@ -4,12 +4,14 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
+    @course = Course.find(params[:course_id])
+    @lessons = @course.lessons
   end
 
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    #@course = Course.find(params[:course_id])
   end
 
   # GET /lessons/new
@@ -64,6 +66,7 @@ class LessonsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
+      @course = Course.find(params[:course_id])
       @lesson = Lesson.find(params[:id])
     end
 

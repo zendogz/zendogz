@@ -11,12 +11,18 @@
                 </div>
                 <div class="panel-body">
                     <%= markdown(testimonial.body) %>
-                    <%= link_to 'Show', testimonial %> ::
-                    <%= link_to 'Edit', edit_testimonial_path(testimonial) %> ::
-                    <%= link_to 'Destroy', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Show', testimonial %>
+                    <% if can? :testimonials, :edit, testimonial %>
+                        ::<%= link_to 'Edit', edit_testimonial_path(testimonial) %>
+                    <% end %>
+                    <% if can? :testimonials, :destroy, testimonial %>
+                        ::<%= link_to 'Destroy', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
                 </div>
             </div>
         </div>
     </div>
 <% end %>
-<%= link_to 'New Testimonial', new_testimonial_path %>
+<% if can? :testimonials, :create %>
+    <%= link_to 'New Testimonial', new_testimonial_path %>
+<% end %>

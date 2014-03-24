@@ -19,10 +19,10 @@
         <td><%= lesson.name %></td>
         <td><%= lesson.handout %></td>
         <td><%= lesson.lesson_at %></td>
-        <td><%= lesson.status %></td>
-        <td><%= link_to 'Show', lesson %></td>
-        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-        <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= lesson.status.description %></td>
+        <td><%= link_to 'Show', course_lesson_path(@course, lesson) %></td>
+        <td><%= link_to 'Edit', edit_course_lesson_path(@course, lesson) %></td>
+        <td><%= link_to 'Destroy', course_lesson_path(@course, lesson), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Lesson', new_lesson_path %>
+<%= link_to 'New Lesson', new_course_lesson_path(@course) %>

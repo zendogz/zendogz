@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Set:</strong>
+  <%= @code.set %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @code.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @code.description %>
+</p>
+
+<%= link_to 'Edit', edit_code_path(@code) %> |
+<%= link_to 'Back', codes_path %>
