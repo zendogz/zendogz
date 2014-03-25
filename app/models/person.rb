@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
   has_many :dogs
+  has_many :enrollments
+  has_many :courses, through: :enrollments
   has_secure_password
   validates_uniqueness_of :email
 

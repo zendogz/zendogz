@@ -15,6 +15,7 @@ class Permission
         person.id == user.id
       end
       allow :lessons, [:index, :show]
+      allow :enrollments, [:new, :create]
       if user.role?(:owner)
         allow :dogs, [:index, :new, :create]
         allow :dogs, [:show, :edit, :update, :destroy] do |dog|

@@ -28,8 +28,14 @@ FactoryGirl.define do
     status nil
   end
 
+  factory :enrollment do
+    person nil
+    course nil
+  end
+
   factory :code do
-    set Code.new(set_id: 1, code: 'root', description: 'root')
+    #set Code.new(set_id: 1, code: 'root', description: 'root')
+    set Code.first
     code "new_code"
     description "new code description"
   end

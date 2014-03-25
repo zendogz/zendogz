@@ -13,6 +13,7 @@ Zendogs::Application.routes.draw do
 
   resources :courses do
     resources :lessons
+    resources :enrollments
   end
 
   %w[home about services contact].each do |page|

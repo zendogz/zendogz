@@ -33,10 +33,12 @@ describe Permission do
     let(:user) { create(:person, roles: ['user']) }
     let(:another_user) { create(:person) }
     subject { Permission.new(user) }
-    it 'allows editing own profile' do subject.can?('people', 'edit', user).should be_true end
-    it 'allows updating own profile' do subject.can?('people', 'update', user).should be_true end
-    it 'denies editing another profile' do subject.can?('people', 'edit', another_user).should_not be_true end
-    it 'denies updating another profile' do subject.can?('people', 'update', another_user).should_not be_true end
+    it 'allows editing own profile' do subject.can?(:people, :edit, user).should be_true end
+    it 'allows updating own profile' do subject.can?(:people, :update, user).should be_true end
+    it 'denies editing another profile' do subject.can?(:people, :edit, another_user).should_not be_true end
+    it 'denies updating another profile' do subject.can?(:people, :update, another_user).should_not be_true end
+    it 'allows enrolling for a course' do subject.can?(:enrollments, :new).should be_true end
+    it 'allows enrolling for a course' do subject.can?(:enrollments, :create).should be_true end
   end
 
   describe 'when logged in as a student' do
