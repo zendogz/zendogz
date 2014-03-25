@@ -22,16 +22,16 @@ FactoryGirl.define do
   end
 
   factory :lesson do
-    name "MyString"
-    handout "MyString"
-    lesson_at "2014-03-23 16:32:47"
-    status ""
+    sequence(:name) { |n| "lesson #{n}" }
+    handout "handout"
+    lesson_at Time.now + 3.days
+    status nil
   end
 
   factory :code do
-    set nil
-    code "MyString"
-    description "MyString"
+    set Code.new(set_id: 1, code: 'root', description: 'root')
+    code "new_code"
+    description "new code description"
   end
 
 end
