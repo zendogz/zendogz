@@ -20,4 +20,8 @@ class Person < ActiveRecord::Base
   def role_symbols
     roles.map(&:to_sym)
   end
+
+  def admin?
+    self.role?(:admin)
+  end
 end

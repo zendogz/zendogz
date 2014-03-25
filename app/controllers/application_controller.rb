@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   delegate :can?, to: :current_permission
-  helper_method :current_user, :can?
+  helper_method :current_user, :can?, :admin?
 
   private
 
@@ -25,5 +25,9 @@ class ApplicationController < ActionController::Base
       if !current_permission.can?(params[:controller], params[:action], current_resource)
         redirect_to root_url, alert: "Not authorized. #{params[:controller]} #{params[:action]} #{current_resource.inspect}"
       end
+    end
+
+    def admin?
+      current_user && current_user.admin?
     end
 end
