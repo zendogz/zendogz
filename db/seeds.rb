@@ -35,22 +35,41 @@ sets = Code.create({id: 1, set_id: 1, code: 'root', description: 'root'})
 lesson_status = Code.create({id: 2, set: sets, code: 'venue_status', description: 'venue status'})
 lesson_status_active = Code.create({id: 3, set: lesson_status, code: '1', description: 'active'})
 lesson_status_cancelled = Code.create({id: 4, set: lesson_status, code: '2', description: 'cancelled'})
+enrollment_status = Code.create({id: 10, set: sets, code: 'enrollment_status', description: 'enrollment status'})
+enrollment_status_pending = Code.create({id: 11, set: enrollment_status, code: '1', description: 'pending'})
+enrollment_status_active = Code.create({id: 12, set: enrollment_status, code: '2', description: 'active'})
+enrollment_status_declined = Code.create({id: 13, set: enrollment_status, code: '3', description: 'declined'})
+enrollment_status_expired = Code.create({id: 14, set: enrollment_status, code: '4', description: 'expired'})
 
 unless ENV["minimal"]
 
   cate = Person.create(
-  name: 'cate',
-  email: 'cate@raceweb.ca',
-  password: 'pass',
-  password_confirmation: 'pass',
-  address: '321 fake st',
-  city: 'victoria',
-  postal: 'v0b 2l0',
-  phone_home: '250-555-4321',
-  phone_cell: '250-555-6666',
-  # user
-  authority: 4,
-  born_on: 40.years.ago)
+    name: 'cate',
+    email: 'cate@raceweb.ca',
+    password: 'pass',
+    password_confirmation: 'pass',
+    address: '321 fake st',
+    city: 'victoria',
+    postal: 'v0b 2l0',
+    phone_home: '250-555-4321',
+    phone_cell: '250-555-6666',
+    # user
+    authority: 4,
+    born_on: 40.years.ago)
+
+  eva = Person.create(
+    name: 'eva',
+    email: 'eva@raceweb.ca',
+    password: 'pass',
+    password_confirmation: 'pass',
+    address: '456 fake st',
+    city: 'victoria',
+    postal: 'v9a 7b8',
+    phone_home: '250-555-1234',
+    phone_cell: '250-555-7777',
+    # user
+    authority: 4,
+    born_on: 41.years.ago)
 
   mugs   = Dog.create(name: 'mugs',   breed: 'boxer', colour: 'brown', born_on: 3.years.ago, person: mark)
   mugs_note_1 = Note.create(dog: mugs, note: 'very stinky wierdo who likes to choke himself')
@@ -147,8 +166,9 @@ eos
   course_2 = Course.create(name: 'course two', description: 'course two description')
   lesson_4 = Lesson.create(name: 'course two sit stay', description: 'course two teach your dog to sit and stay', handout: '2_sit_stay', course: course_2, status: lesson_status_active)
 
-  enrollment_1 = Enrollment.create(person: cate, course: course_1)
-  enrollment_2 = Enrollment.create(person: adam, course: course_1)
-  enrollment_3 = Enrollment.create(person: cate, course: course_2)
+  enrollment_1 = Enrollment.create(person: cate, course: course_1, status: enrollment_status_active)
+  enrollment_2 = Enrollment.create(person: adam, course: course_1, status: enrollment_status_active)
+  enrollment_3 = Enrollment.create(person: eva,  course: course_1, status: enrollment_status_expired)
+  enrollment_4 = Enrollment.create(person: cate, course: course_2, status: enrollment_status_active)
 
 end
