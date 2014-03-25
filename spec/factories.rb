@@ -35,7 +35,7 @@ FactoryGirl.define do
 
   factory :code do
     #set Code.new(set_id: 1, code: 'root', description: 'root')
-    set Code.first
+    set nil
     code "new_code"
     description "new code description"
   end

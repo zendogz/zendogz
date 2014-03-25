@@ -145,8 +145,10 @@ eos
   lesson_2 = Lesson.create(name: 'lay down', description: 'teach your dog to lay down', handout: 'down', course: course_1, status: lesson_status_active)
   lesson_3 = Lesson.create(name: 'off leash', description: 'teach your dog to not run away', handout: 'off_leash', course: course_1, status: lesson_status_active)
   course_2 = Course.create(name: 'course two', description: 'course two description')
+  lesson_4 = Lesson.create(name: 'course two sit stay', description: 'course two teach your dog to sit and stay', handout: '2_sit_stay', course: course_2, status: lesson_status_active)
 
   enrollment_1 = Enrollment.create(person: cate, course: course_1)
-  enrollment_1 = Enrollment.create(person: adam, course: course_1)
+  enrollment_2 = Enrollment.create(person: adam, course: course_1)
+  enrollment_3 = Enrollment.create(person: cate, course: course_2)
 
 end

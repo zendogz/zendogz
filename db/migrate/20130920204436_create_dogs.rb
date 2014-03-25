@@ -5,7 +5,7 @@ class CreateDogs < ActiveRecord::Migration
       t.string :breed
       t.string :colour
       t.date :born_on
-      t.references :person
+      t.references :person, index: true
 
       t.timestamps
     end
