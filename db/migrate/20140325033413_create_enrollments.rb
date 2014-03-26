@@ -4,6 +4,7 @@ class CreateEnrollments < ActiveRecord::Migration
       t.references :person, index: true
       t.references :course, index: true
       t.references :status, index: true
+      t.date :enrolled_on
 
       t.timestamps
     end
