@@ -26,12 +26,18 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments
   # POST /enrollments.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
+    @course = Course.find(params[:course_id])
+    @enrollment = Enrollment.new(course: @course)
+
+    @enrollment.person = @current_user if @current_user
+
+    logger.info(@enrollment.inspect)
 
     respond_to do |format|
       if @enrollment.save
         format.html { redirect_to course_enrollment_path(@course, @enrollment), notice: 'Enrollment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @enrollment }
+        format.js {}
       else
         format.html { render action: 'new' }
         format.json { render json: @enrollment.errors, status: :unprocessable_entity }
@@ -72,6 +78,6 @@ class EnrollmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      params.require(:enrollment).permit(:person_id, :course_id)
+      params.require(:enrollment).permit(:person_id, :course_id, :status_id)
     end
 end

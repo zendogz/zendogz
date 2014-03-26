@@ -43,15 +43,19 @@ ActiveRecord::Schema.define(version: 20140325033413) do
     t.datetime "updated_at"
   end
 
+  add_index "dogs", ["person_id"], name: "index_dogs_on_person_id", using: :btree
+
   create_table "enrollments", force: true do |t|
     t.integer  "person_id"
     t.integer  "course_id"
+    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
   add_index "enrollments", ["person_id"], name: "index_enrollments_on_person_id", using: :btree
+  add_index "enrollments", ["status_id"], name: "index_enrollments_on_status_id", using: :btree
 
   create_table "lessons", force: true do |t|
     t.string   "name"
@@ -64,12 +68,17 @@ ActiveRecord::Schema.define(version: 20140325033413) do
     t.datetime "updated_at"
   end
 
+  add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
+  add_index "lessons", ["status_id"], name: "index_lessons_on_status_id", using: :btree
+
   create_table "notes", force: true do |t|
     t.integer  "dog_id"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "notes", ["dog_id"], name: "index_notes_on_dog_id", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "name"
