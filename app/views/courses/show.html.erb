@@ -11,8 +11,12 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @course.schedule.to_s %>
+  <strong>Schedule:</strong>
+  <ul>
+  <% @course.schedule_obj.recurrence_rules.each do |rule| %>
+    <li><%= rule.to_s %></li>
+  <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
