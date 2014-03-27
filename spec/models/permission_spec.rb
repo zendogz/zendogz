@@ -20,6 +20,8 @@ describe Permission do
     it 'allows listing courses' do subject.can?(:courses, :index).should be_true end
     it 'allows viewing courses' do subject.can?(:courses, :show).should be_true end
     it 'denies editing courses' do subject.can?(:courses, :edit).should_not be_true end
+    it 'allows enrolling for a course (\'new\')' do subject.can?(:enrollments, :new).should be_true end
+    it 'allows enrolling for a course (\'create\')' do subject.can?(:enrollments, :create).should be_true end
     # lessons
     it 'denies listing lessons' do subject.can?(:lessons, :index).should_not be_true end
     it 'denies viewing lessons' do subject.can?(:lessons, :show).should_not be_true end
@@ -37,8 +39,6 @@ describe Permission do
     it 'allows updating own profile' do subject.can?(:people, :update, user).should be_true end
     it 'denies editing another profile' do subject.can?(:people, :edit, another_user).should_not be_true end
     it 'denies updating another profile' do subject.can?(:people, :update, another_user).should_not be_true end
-    it 'allows enrolling for a course' do subject.can?(:enrollments, :new).should be_true end
-    it 'allows enrolling for a course' do subject.can?(:enrollments, :create).should be_true end
   end
 
   describe 'when logged in as a student' do

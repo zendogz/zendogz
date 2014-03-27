@@ -29,7 +29,12 @@ class EnrollmentsController < ApplicationController
     @course = Course.find(params[:course_id])
     @enrollment = Enrollment.new(course: @course)
 
-    @enrollment.person = @current_user if @current_user
+    if @current_user && !admin?
+      @enrollment.person = @current_user if @current_user
+    else
+      # need to build a user
+
+    end
 
     logger.info(@enrollment.inspect)
 
