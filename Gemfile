@@ -10,12 +10,13 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'                # https://github.com/rails/turbolinks
 gem 'jbuilder'                  # https://github.com/rails/jbuilder
-gem 'bcrypt-ruby'    # needed for has_secure_password
+gem 'bcrypt-ruby'               # needed for has_secure_password
 gem 'cancan'                    # authorization
 gem 'simple_form'               # form builder
 gem 'kaminari'                  # pagination
 gem 'redcarpet'                 # markdown
 gem 'factory_girl_rails'        # test data generation
+gem 'ice_cube'                  # recurring schedule
 
 gem 'byebug',      group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]

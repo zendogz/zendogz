@@ -32,8 +32,17 @@ class EnrollmentsController < ApplicationController
     if @current_user && !admin?
       @enrollment.person = @current_user if @current_user
     else
-      # need to build a user
-
+      if params[:person]
+        # have a person
+        @student = Person.create(params[:person])
+        @enrollment.person = @student
+      else
+        # need to build a person
+        @person = @enrollment.build_person
+        logger.info(@person.inspect)
+        render 'new'
+        return
+      end
     end
 
     logger.info(@enrollment.inspect)
@@ -83,6 +92,6 @@ class EnrollmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      params.require(:enrollment).permit(:person_id, :course_id, :status_id)
+      params.require(:enrollment).permit(:person_id, :course_id, :status_id, person_attributes: [:name, :email, :password, :password_confirmation, :address, :city, :postal, :phone_home, :phone_cell, :phone_work, :born_on])
     end
 end

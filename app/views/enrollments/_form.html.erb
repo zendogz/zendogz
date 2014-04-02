@@ -1,12 +1,83 @@
-<%= simple_form_for([@course, @enrollment], html: {class: 'form-horizontal'}) do |f| %>
-  <%= f.error_notification %>
+<div class="modal-dialog">
+    <div class="modal-content">
 
-  <div class="form-inputs">
-    <%= f.association :person %>
-    <%= f.association :course %>
-  </div>
+        <%= form_for [@course, @enrollment], html: {class: 'form-horizontal'} do |f| %>
+            <%= f.hidden_field :course, value: @course %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">enroll</h4>
+            </div> <!-- end .modal-header -->
+
+            <div class="modal-body">
+
+                <%= fields_for @enrollment.person do |student| %>
+
+                    <div class="form-group">
+                        <%= student.label :name, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :name, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :email, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :email, class: 'form-control' %>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <%= student.label :address, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :address, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :city, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :city, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :postal, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :postal, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :phone_home, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :phone_home, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :phone_cell, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :phone_cell, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :phone_work, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :phone_work, class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= student.label :born_on, class: 'col-md-2 control-label' %>
+                        <div class="col-md-8">
+                            <%= student.text_field :born_on, class: 'col-md-2 form-control' %>
+                        </div>
+                    </div>
+                <% end %>
+
+            </div> <!-- end .modal-body -->
+
+            <div class="modal-footer">
+                <%# link_to "forgotten password?", new_password_reset_path %>
+                <%= f.submit 'enroll', class: 'btn btn-default' %>
+            </div> <!-- end .modal-footer -->
+
+        <% end %> <!-- end .form-horizontal -->
+    </div> <!-- end .modal-content -->
+</div> <!-- end .modal-dialog -->
+

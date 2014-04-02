@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140325033413) do
   create_table "courses", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.text     "schedule"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140325033413) do
     t.integer  "person_id"
     t.integer  "course_id"
     t.integer  "status_id"
+    t.date     "enrolled_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

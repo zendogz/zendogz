@@ -163,7 +163,7 @@ eos
   course_1_schedule.add_recurrence_rule(IceCube::Rule.weekly.day(:tuesday, :thursday).hour_of_day(18).minute_of_hour(30).until(Date.today + 2.months))
   course_1_schedule.add_recurrence_rule(IceCube::Rule.weekly.day(:saturday).hour_of_day(10).minute_of_hour(30).until(Date.today + 2.months))
 
-  course_1 = Course.create(name: 'course one', description: 'course one description', schedule: course_1_schedule.to_hash())
+  course_1 = Course.create(name: 'course one', description: 'course one description', schedule: course_1_schedule.to_yaml())
   lesson_1 = Lesson.create(name: 'sit stay', description: 'teach your dog to sit and stay', handout: 'sit_stay', course: course_1, status: lesson_status_active)
   lesson_2 = Lesson.create(name: 'lay down', description: 'teach your dog to lay down', handout: 'down', course: course_1, status: lesson_status_active)
   lesson_3 = Lesson.create(name: 'off leash', description: 'teach your dog to not run away', handout: 'off_leash', course: course_1, status: lesson_status_active)
