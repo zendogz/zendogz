@@ -66,6 +66,21 @@
             </div><!-- /.container -->
         </nav>
 
+        <div id="header">
+            <%= image_tag("header/#{rand(5).to_s}.jpg", :size => "920x160") %>
+        </div>
+
+        <ul nowrap id="nav">
+            <% c = params[:controller] %>
+            <li><%= link_to('home',          root_path, c.include?('pages') ? {id: 'selected'} : nil ) %></li>
+            <li><%= link_to('about',         about_path, c.include?('pages') ? {id: 'selected'} : nil ) %></li>
+            <li><%= link_to('services',      services_path, c.include?('workout') ? {id: 'selected'} : nil ) %></li>
+            <li><%= link_to('contact',       contact_path, c.include?('pages') ? {id: 'selected'} : nil ) %></li>
+            <li><%= link_to('courses' ,      courses_path, c.include?('course') ? {id: 'selected'} : nil ) %></li>
+            <li><%= link_to('testimonials' , testimonials_path, c.include?('testimonial') ? {id: 'selected'} : nil ) %></li>
+        </ul>
+        <div style="clear:both;"></div>
+
         <div class="container">
 
             <%= link_to 'debug', debug_path, remote: true if Rails.env.development? %>

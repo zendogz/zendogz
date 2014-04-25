@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require datepicker
+//= require jquery.easing
 //= require_tree .
 
 // hide success messages after 3 seconds
@@ -25,6 +26,9 @@ window.setTimeout(function() {
 }, 3000);
 
 $(function() {
+
+    $('#nav').spasticNav();
+
     $('.datepicker').datepicker({
         format: "yyyy-mm-dd"
     })
