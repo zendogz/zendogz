@@ -27,7 +27,7 @@ window.setTimeout(function() {
 
 $(function() {
 
-    $('#nav').spasticNav();
+    $('#nav-links').spasticNav();
 
     $('.datepicker').datepicker({
         format: "yyyy-mm-dd"

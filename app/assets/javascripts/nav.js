@@ -13,7 +13,7 @@
 		return this.each(function() {
 
 			var nav = $(this),
-		 		currentPageItem = $('#selected', nav),
+		 		currentPageItem = $('li.selected', nav),
 		 		blob,
 				reset;
 
