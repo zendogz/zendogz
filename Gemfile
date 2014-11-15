@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.1.0'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.7'
 
 gem 'pg'                        # postgres as the database for Active Record
 gem 'sass-rails', '~> 4.0.0'    # scss stylesheets
@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks'                # https://github.com/rails/turbolinks
 gem 'jbuilder'                  # https://github.com/rails/jbuilder
 gem 'bcrypt-ruby'               # needed for has_secure_password
-gem 'cancan'                    # authorization
+gem 'pundit'                    # authorization
 gem 'simple_form'               # form builder
 gem 'kaminari'                  # pagination
 gem 'redcarpet'                 # markdown
