@@ -21,17 +21,15 @@
             <td><%= dog.colour %></td>
             <td><%= dog.born_on %></td>
             <td>
-                <% if can? :dogs, :show, dog %>
-                    <%= link_to 'Show', dog %>
-                <% end %>
+                <%= link_to 'Show', dog %>
             </td>
             <td>
-                <% if can? :dogs, :edit, dog %>
+                <% if policy(dog).update? %>
                     <%= link_to 'Edit', edit_dog_path(dog) %>
                 <% end %>
             </td>
             <td>
-                <% if can? :dogs, :destroy, dog %>
+                <% if policy(dog).destroy? %>
                     <%= link_to 'Destroy', dog, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
             </td>
@@ -42,6 +40,6 @@
 
 <br>
 
-<% if can? :dogs, :create %>
+<% if policy(Dog).create? %>
     <%= link_to 'New Dog', new_dog_path %>
 <% end %>

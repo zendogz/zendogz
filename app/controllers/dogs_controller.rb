@@ -1,9 +1,16 @@
 class DogsController < ApplicationController
 
+  # before_filter :authenticate_dog!
+  # after_action :verify_authorized
+
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.for(current_user)
+    #authorize Dog
+    #@dogs = Dog.for(current_user)
+    @dogs = policy_scope(Dog)
+    #@dogs = DogPolicy::Scope.new(current_user, Dog).resolve
+    #@dogs = Dog.all
   end
 
   # GET /dogs/1
