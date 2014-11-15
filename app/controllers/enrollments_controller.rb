@@ -6,6 +6,8 @@ class EnrollmentsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @enrollments = @course.enrollments
+    logger.info('enrollments')
+    logger.info(@enrollments)
   end
 
   # GET /enrollments/1
@@ -53,10 +55,10 @@ class EnrollmentsController < ApplicationController
         @enrollment.person = @current_user
       elsif params[:enrollment]
         # buil person from params
-        logger.info('not logged in, build student from params') 
+        logger.info('not logged in, build student from params')
         @student = Person.create(enrollment_params[:person])
         @enrollment.person = @student
-      else       
+      else
         # need to build a person
         logger.info('not logged in, need to build a student: ')
         @person = @enrollment.build_person
