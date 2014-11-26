@@ -11,24 +11,24 @@
             <td><%= course.name %></td>
             <td><%= course.description %></td>
             <td>
-                <% if can? :courses, :show, course %>
+                <% if policy(course).show? %>
                     <%= link_to 'Show', course %>
                 <% end %>
             </td>
             <td>
-                <% if can? :courses, :update, course %>
+                <% if policy(course).update? %>
                     <%= link_to 'Edit', edit_course_path(course) %>
                 <% end %>
             </td>
             <td>
-                <% if can? :courses, :destroy, course %>
+                <% if policy(course).destroy? %>
                     <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
             </td>
             <td>
-                <% if can? :enrollments, :new %>
+                <%# if can? :enrollments, :new %>
                     <%= link_to 'Enroll', course_enrollments_path(course), method: :post, remote: true %>
-                <% end %>
+                <%# end %>
             </td>
         </tr>
     <% end %>
@@ -37,6 +37,6 @@
 
 <br>
 
-<% if can? :courses, :create %>
+<% if policy(Course).create? %>
     <%= link_to 'New Course', new_course_path %>
 <% end %>

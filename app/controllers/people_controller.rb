@@ -71,7 +71,4 @@ class PeopleController < ApplicationController
       params.require(:person).permit(:name, :email, :password, :password_confirmation, :address, :city, :postal, :phone_home, :phone_cell, :phone_work, :authority, :born_on)
     end
 
-    def current_resource
-      @current_resource ||= Person.find(params[:id]) if params[:id]
-    end
 end

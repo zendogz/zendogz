@@ -26,4 +26,8 @@ class Person < ActiveRecord::Base
   def admin?
     self.role?(:admin)
   end
+
+  def owner?
+    self.role?(:owner)
+  end
 end

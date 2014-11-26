@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Testimonial do
   it 'should be invalid without a from or body' do

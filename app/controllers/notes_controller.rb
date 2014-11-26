@@ -74,8 +74,4 @@ class NotesController < ApplicationController
       params.require(:note).permit(:note)
     end
 
-    def current_resource
-      @current_resource ||= Note.find(params[:id]) if params[:id]
-    end
-
 end

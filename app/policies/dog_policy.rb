@@ -1,25 +1,33 @@
 class DogPolicy < ApplicationPolicy
 
-	class Scope
-  	attr_reader :user, :scope
-
-  	def initialize(user, scope)
-    	@user = user
-    	@scope = scope
-  	end
+	class Scope < Scope
 
   	def resolve
     	if user && user.admin?
         scope.all
     	else
-        scope.where(:owner == user)
+        scope.where(person: user)
     	end
   	end
 	end
 
-  def index?  ; true; end
-  def show?   ; true; end
-  def create? ; true; end
-  def update? ; record.person == user; end
-  def destroy?; record.person == user; end
+  def show?
+    # must be admin or own the dog
+    (user && user.admin?) || record.person == user
+  end
+
+  def create?
+    # must be logged in and either an admin or owner
+    user && (user.owner? || user.admin?)
+  end
+
+  def update?
+    # must be admin or own the dog
+    (user && user.admin?) || record.person == user
+  end
+
+  def destroy?
+    # must be admin or own the dog
+    (user && user.admin?) || record.person == user
+  end
 end
