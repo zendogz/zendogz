@@ -1,16 +1,21 @@
 require 'rails_helper'
 
 describe Course do
-  before(:each) do
-    @course = Course.new
+
+  it "is invalid without a name" do
+    @course = build(:course, name: nil)
+    expect(@course).to_not be_valid
+    @course.name = 'some course name'
+    expect(@course).to be_valid
   end
 
-  it "should be invalid without a name and description" do
-    @course.should_not be_valid
-    @course.name = 'some course name'
-    @course.should_not be_valid
+  it "is invalid without a description" do
+    @course = build(:course, description: nil)
+    expect(@course).to_not be_valid
     @course.description = 'some course description'
-    @course.should be_valid
+    expect(@course).to be_valid
   end
+
+  #todo - add schedule testing
 
 end

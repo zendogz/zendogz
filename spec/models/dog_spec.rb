@@ -2,23 +2,30 @@ require 'rails_helper'
 
 describe Dog do
 
-  it 'should be invalid without a name' do
-    @dog = Dog.new
-    @dog.should_not be_valid
+  it 'is invalid without a name' do
+    @dog = build(:dog, name: nil)
+    expect(@dog).to_not be_valid
     @dog.name = 'some dog name'
-    @dog.should be_valid
+    expect(@dog).to be_valid
   end
 
-  describe 'dog view access' do
+  context 'view access' do
+
+    let!(:cate)  { create(:person, name: 'cate', roles: ['owner']) }
+    let!(:chloe) { create(:dog, name: 'chloe', person_id: cate.id) }
+    let!(:mark)  { create(:person, name: 'mark', roles: ['admin']) }
+    let!(:mugs)  { create(:dog, name: 'mugs', person_id: mark.id) }
+
     it 'lets owners see only their own dogs' do
-      @cate = create(:person, name: 'cate', roles: ['owner'])
-      @chloe = create(:dog, name: 'chloe', person_id: @cate.id)
-      @mark = create(:person, name: 'mark', roles: ['admin'])
-      @mugs = create(:dog, name: 'mugs', person_id: @mark.id)
-      marks_dogs = Dog.for(@mark)
-      marks_dogs.size.should eq(2)
-      cates_dogs = Dog.for(@cate)
-      cates_dogs.size.should eq(1)
+      expect(Dog.for(cate).count).to eq(1)
+    end
+
+    it 'lets admins see all dogs' do
+      expect(Dog.for(mark).count).to eq(2)
+    end
+
+    it 'lets guests see no dogs' do
+      expect(Dog.for(nil)).to be nil
     end
   end
 

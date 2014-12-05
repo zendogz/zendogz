@@ -1,15 +1,11 @@
 require 'rails_helper'
 
 describe Lesson do
-  before(:each) do
-    @lesson = build(:lesson)
-  end
 
-  it "should be invalid without a name" do
-    blank_lesson = Lesson.new
-    blank_lesson.should_not be_valid
-    blank_lesson.name = 'some lesson name'
-    blank_lesson.should be_valid
-    @lesson.should be_valid
+  it "is invalid without a name" do
+    @lesson = build(:course, name: nil)
+    expect(@lesson).to_not be_valid
+    @lesson.name = 'some lesson name'
+    expect(@lesson).to be_valid
   end
 end
