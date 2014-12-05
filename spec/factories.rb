@@ -29,8 +29,8 @@ FactoryGirl.define do
   end
 
   factory :enrollment do
-    person nil
-    course nil
+    association :person, factory: :person, strategy: :build
+    association :course, factory: :course, strategy: :build
   end
 
   factory :code do

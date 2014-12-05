@@ -2,11 +2,14 @@ require 'rails_helper'
 
 describe Dog do
 
+  it 'has a valid factory' do
+    dog = build(:dog)
+    expect(dog).to be_valid
+  end
+
   it 'is invalid without a name' do
-    @dog = build(:dog, name: nil)
-    expect(@dog).to_not be_valid
-    @dog.name = 'some dog name'
-    expect(@dog).to be_valid
+    dog = build(:dog, name: nil)
+    expect(dog).to_not be_valid
   end
 
   context 'view access' do

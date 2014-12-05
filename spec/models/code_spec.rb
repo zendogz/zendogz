@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 describe Code do
-  before(:each) do
-    @code = build(:code)
+
+  it 'has a valid factory' do
+    code = build(:code)
+    expect(code).to be_valid
   end
 
-  it "should be invalid without a set, code or description" do
-    blank_code = Code.new
-    blank_code.should_not be_valid
-    blank_code.set = Code.new
-    blank_code.should_not be_valid
-    blank_code.code = 'code'
-    blank_code.should_not be_valid
-    blank_code.description = 'description'
-    blank_code.should be_valid
-    @code.should be_valid
+  it 'is invalid without a code' do
+    code = build(:code, code: nil)
+    expect(code).to_not be_valid
+  end
+
+  it 'is invalid without a description' do
+    code = build(:code, description: nil)
+    expect(code).to_not be_valid
   end
 
 end

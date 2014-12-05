@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   has_many :courses, through: :enrollments
   has_secure_password
   validates_uniqueness_of :email
+  validates :name, :password, :email, presence: true
 
   ROLES = %w[admin owner user]
 
