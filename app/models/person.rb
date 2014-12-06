@@ -31,4 +31,13 @@ class Person < ActiveRecord::Base
   def owner?
     self.role?(:owner)
   end
+
+  def enroll(course)
+    courses << course if course
+    save
+  end
+
+  def enrolled?(course)
+    courses.include?(course) if course
+  end
 end

@@ -3,13 +3,17 @@ class LessonPolicy < ApplicationPolicy
   class Scope < Scope
 
     def resolve
-      scope.all
+      if user
+        user.admin? ? scope.all : scope.where(course_id: user.courses.ids)
+      else
+        Lesson.none
+      end
     end
   end
 
   def show?
-    # must be logged in to see lesson details
-    user
+    # must be enrolled in course to see lesson details
+    user.admin? || user.enrolled?(record.course) if user
   end
 
   def create?

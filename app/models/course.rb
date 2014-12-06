@@ -7,4 +7,13 @@ class Course < ActiveRecord::Base
   def schedule_obj
     IceCube::Schedule.from_yaml(self.schedule)
   end
+
+  def enroll(student)
+    students << student if student
+    save
+  end
+
+  def enrolled?(student)
+    students.include?(student) if student
+  end
 end

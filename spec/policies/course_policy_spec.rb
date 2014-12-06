@@ -7,7 +7,7 @@ describe CoursePolicy do
   let(:user)  { build(:person, authority: 4) }
   let(:course) { build(:course) }
 
-  subject { CoursePolicy }
+  subject { described_class }
 
   permissions ".scope" do
     pending "add some examples to (or delete) #{__FILE__}"
