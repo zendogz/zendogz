@@ -1,15 +1,19 @@
-class CoursePolicy < ApplicationPolicy
+class NotePolicy < ApplicationPolicy
 
   class Scope < Scope
 
     def resolve
-      scope.all
+      if user
+        user.admin? ? scope.all : scope.where(dog_id: user.dogs.ids)
+      else
+        Note.none
+      end
     end
   end
 
   def show?
-    # anyone can see course details
-    true
+    # note must be for a dog that the user owns
+    user.admin? || user == record.dog.person if user
   end
 
   def create?
@@ -26,5 +30,4 @@ class CoursePolicy < ApplicationPolicy
     # must be admin
     user && user.admin?
   end
-
 end

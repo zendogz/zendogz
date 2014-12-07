@@ -1,20 +1,15 @@
-class CoursePolicy < ApplicationPolicy
+class TestimonialPolicy < ApplicationPolicy
 
   class Scope < Scope
-
     def resolve
+      # everyone can see testimonials
       scope.all
     end
   end
 
-  def show?
-    # anyone can see course details
-    true
-  end
-
   def create?
-    # must be admin
-    user && user.admin?
+    # must be logged in
+    user
   end
 
   def update?

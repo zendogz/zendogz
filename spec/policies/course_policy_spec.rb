@@ -5,12 +5,25 @@ describe CoursePolicy do
   let(:admin) { build(:person, authority: 1) }
   let(:owner) { build(:person, authority: 2) }
   let(:user)  { build(:person, authority: 4) }
-  let(:course) { build(:course) }
+  let!(:course) { create(:course) }
 
   subject { described_class }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context ".scope" do
+    it 'shows all courses to an admin' do
+      courses = subject::Scope.new(admin, Course).resolve
+      expect(courses.count).to eq(1)
+    end
+
+    it 'shows all courses to a user' do
+      courses = subject::Scope.new(user, Course).resolve
+      expect(courses.count).to eq(1)
+    end
+
+    it 'shows all courses to a guest' do
+      courses = subject::Scope.new(nil, Course).resolve
+      expect(courses.count).to eq(1)
+    end
   end
 
   permissions :show? do

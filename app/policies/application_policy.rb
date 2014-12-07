@@ -12,7 +12,7 @@ class ApplicationPolicy
     false
   end
 
-  def show
+  def show?
     scope.where(id: record.id).exists?;
   end
 

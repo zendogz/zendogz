@@ -3,11 +3,11 @@ class DogPolicy < ApplicationPolicy
 	class Scope < Scope
 
   	def resolve
-    	if user && user.admin?
-        scope.all
+    	if user
+        user.admin? ? scope.all : scope.where(person: user)
     	else
-        scope.where(person: user)
-    	end
+        scope.none
+      end
   	end
 	end
 
