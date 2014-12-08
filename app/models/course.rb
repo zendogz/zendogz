@@ -5,7 +5,7 @@ class Course < ActiveRecord::Base
   validates :name, :description, presence: true
 
   def schedule_obj
-    IceCube::Schedule.from_yaml(self.schedule)
+    self.schedule ? IceCube::Schedule.from_yaml(self.schedule) : IceCube::Schedule.new
   end
 
   def enroll(student)

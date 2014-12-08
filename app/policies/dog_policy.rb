@@ -30,4 +30,5 @@ class DogPolicy < ApplicationPolicy
     # must be admin or own the dog
     (user && user.admin?) || record.person == user
   end
+
 end

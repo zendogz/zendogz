@@ -12,10 +12,10 @@
                 <div class="panel-body">
                     <%= markdown(testimonial.body) %>
                     <%= link_to 'Show', testimonial %>
-                    <% if can? :testimonials, :edit, testimonial %>
+                    <% if policy(testimonial).update? %>
                         ::<%= link_to 'Edit', edit_testimonial_path(testimonial) %>
                     <% end %>
-                    <% if can? :testimonials, :destroy, testimonial %>
+                    <% if policy(testimonial).destroy? %>
                         ::<%= link_to 'Destroy', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %>
                     <% end %>
                 </div>
@@ -23,6 +23,6 @@
         </div>
     </div>
 <% end %>
-<% if can? :testimonials, :create %>
+<% if policy(Testimonial).create? %>
     <%= link_to 'New Testimonial', new_testimonial_path %>
 <% end %>

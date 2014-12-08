@@ -26,9 +26,9 @@
                 <% end %>
             </td>
             <td>
-                <%# if can? :enrollments, :new %>
+                <% if policy(Enrollment).new? %>
                     <%= link_to 'Enroll', course_enrollments_path(course), method: :post, remote: true %>
-                <%# end %>
+                <% end %>
             </td>
         </tr>
     <% end %>
