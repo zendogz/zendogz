@@ -29,43 +29,43 @@ describe DogPolicy do
   end
 
   permissions :show? do
-    it "denies access to non-logged in guest" do
+    it "denies access to a guest" do
       expect(subject).not_to permit(nil, darby)
     end
-    it "denies access to non-owner user" do
+    it "denies access to a user" do
       expect(subject).not_to permit(user, darby)
     end
-    it "allows access to owner" do
+    it "allows access to an owner" do
       expect(subject).to permit(adam, darby)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, darby)
     end
   end
 
   permissions :create? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, Dog)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, Dog)
     end
   end
 
   permissions :update? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, darby)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, Dog)
     end
   end
 
   permissions :destroy? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, darby)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, Dog)
     end
   end

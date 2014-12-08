@@ -33,28 +33,28 @@ describe CoursePolicy do
   end
 
   permissions :create? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, course)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, course)
     end
   end
 
   permissions :update? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, course)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, course)
     end
   end
 
   permissions :destroy? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, course)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, course)
     end
   end

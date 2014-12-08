@@ -12,7 +12,7 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def show?
-    # must be admin or be the student
+    # must be admin or the student
     (user && user.admin?) || record.person == user
   end
 
@@ -22,7 +22,7 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def update?
-    # must be admin or own the dog
+    # must be admin or the student
     (user && user.admin?) || record.person == user
   end
 

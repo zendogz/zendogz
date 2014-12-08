@@ -24,49 +24,49 @@ describe NotePolicy do
       expect(notes).not_to include(note3)
     end
 
-    it 'shows no notes to a non-owner user' do
+    it 'shows no notes to a non-owner' do
       notes = subject::Scope.new(user, Note).resolve
       expect(notes.empty?).to be
     end  end
 
   permissions :show? do
-    it "denies access to non-logged in guest" do
+    it "denies access to a guest" do
       expect(subject).not_to permit(nil, note1)
     end
-    it "denies access to non-owner user" do
+    it "denies access to a non-owner" do
       expect(subject).not_to permit(user, note1)
     end
-    it "allows access to owner" do
+    it "allows access to an owner" do
       expect(subject).to permit(adam, note1)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, note1)
     end
   end
 
   permissions :create? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, Note)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, Note)
     end
   end
 
   permissions :update? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, note1)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, Note)
     end
   end
 
   permissions :destroy? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, note1)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, Note)
     end
   end

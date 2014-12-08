@@ -36,7 +36,7 @@ describe PersonPolicy do
     it "allows access to self" do
       expect(subject).to permit(user, user)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, owner)
     end
   end
@@ -57,7 +57,7 @@ describe PersonPolicy do
     it "allows access to self" do
       expect(subject).to permit(user, user)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, owner)
     end
   end
@@ -69,7 +69,7 @@ describe PersonPolicy do
     it "denies access to a user" do
       expect(subject).not_to permit(user, user)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, owner)
     end
   end

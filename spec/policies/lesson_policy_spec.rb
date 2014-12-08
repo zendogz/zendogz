@@ -34,44 +34,44 @@ describe LessonPolicy do
   end
 
   permissions :show? do
-    it "denies access to non-logged in guest" do
+    it "denies access to a guest" do
       expect(subject).not_to permit(nil, lesson_1_1)
     end
-    it "denies access to non-erolled user" do
+    it "denies access to a non-erolled user" do
       expect(subject).not_to permit(user, lesson_1_1)
     end
     it "allows access to an erolled user" do
       user.enroll(lesson_1_1.course)
       expect(subject).to permit(user, lesson_1_1)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, lesson_1_1)
     end
   end
 
   permissions :create? do
-    it "denies access to non-admin user" do
-      expect(subject).not_to permit(user, lesson_1_1)
+    it "denies access to a non-admin" do
+      expect(subject).not_to permit(user, Lesson)
     end
-    it "allows access to admin user" do
-      expect(subject).to permit(admin, lesson_1_1)
+    it "allows access to an admin" do
+      expect(subject).to permit(admin, Lesson)
     end
   end
 
   permissions :update? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, lesson_1_1)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, lesson_1_1)
     end
   end
 
   permissions :destroy? do
-    it "denies access to non-admin user" do
+    it "denies access to a non-admin" do
       expect(subject).not_to permit(user, lesson_1_1)
     end
-    it "allows access to admin user" do
+    it "allows access to an admin" do
       expect(subject).to permit(admin, lesson_1_1)
     end
   end
