@@ -12,10 +12,10 @@
 
 		return this.each(function() {
 
-			var nav = $(this),
-		 		currentPageItem = $('li.selected', nav),
-		 		blob,
-				reset;
+			var nav = $(this);
+			var currentPageItem = $('li.selected', nav);
+			var blob;
+			var reset;
 
 		 	$('<li id="blob"></li>').css({
 		 		width : currentPageItem.outerWidth(),
