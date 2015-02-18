@@ -27,7 +27,7 @@
             </td>
             <td>
                 <% if policy(Enrollment).new? %>
-                    <%= link_to 'Enroll', course_enrollments_path(course), method: :post, remote: true %>
+                    <%= link_to 'Enroll', new_course_enrollment_path(course), remote: true %>
                 <% end %>
             </td>
         </tr>
