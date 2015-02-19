@@ -1,1 +1,11 @@
-$('#modal-dialog').html("<%= escape_javascript(render(partial: 'form')) %>").modal('show');
+<% if @enrollment.new_record? %>
+	$('#modal-dialog').html("<%= escape_javascript(render(partial: 'form')) %>").modal('show');
+<% else %>
+	console.log('successfully enrolled');
+	$('#messages').prepend(
+		'<div class="alert alert-block alert-dismissable alert-success">' +
+        '    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+        '    <h4 class="alert-heading">notice:</h4>' +
+        '   successfully enrolled' +
+        '</div>');
+<% end %>

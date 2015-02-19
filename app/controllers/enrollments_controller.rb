@@ -23,11 +23,16 @@ class EnrollmentsController < ApplicationController
     if admin?
       logger.info('logged in as admin')
       logger.info('need to build a person: ')
-      @enrollment.build_person(name: 'foobar')
-
+      @enrollment.build_person()
     else
       logger.info('NOT logged in as admin')
-
+      if current_user
+        @enrollment.course = @course
+        @enrollment.person = current_user
+        @enrollment.status = Code.code_for('enrollment_status', 'pending')
+        @enrollment.enrolled_on = Date.today
+        @enrollment.save
+      end
     end
   end
 
@@ -46,10 +51,11 @@ class EnrollmentsController < ApplicationController
     logger.info(enrollment_params[:person])
     @student = Person.new(enrollment_params[:person])
     if admin?
-      # make a new password
+      # default password for the new student
       @student.password = 'foobar'
       @student.password_confirmation = 'foobar'
       @student.roles = ['user']
+      @enrollment.status = Code.code_for('enrollment_status', 'active')
     end
     logger.info(@student.inspect)
     @enrollment.person = @student

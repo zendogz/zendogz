@@ -26,7 +26,7 @@
                 <% end %>
             </td>
             <td>
-                <% if policy(Enrollment).new? %>
+                <% if policy(Enrollment).new?  && !current_user.enrolled?(course) %>
                     <%= link_to 'Enroll', new_course_enrollment_path(course), remote: true %>
                 <% end %>
             </td>
