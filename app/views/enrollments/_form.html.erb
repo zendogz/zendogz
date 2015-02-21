@@ -1,7 +1,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
 
-        <%= form_for [@course, @enrollment], html: {class: 'form-horizontal'} do |f| %>
+        <%= form_for [@course, @enrollment], remote: true, html: {class: 'form-horizontal'} do |f| %>
             <%= f.hidden_field :course_id, value: @course.id %>
 
             <div class="modal-header">

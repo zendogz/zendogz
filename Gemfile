@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
-gem 'rails', '4.1.7'
+ruby '2.2.0'
+gem 'rails', '4.2.0'
 
-gem 'pg'                        # postgres as the database for Active Record
+gem 'mysql2'                        # postgres as the database for Active Record
 gem 'sass-rails', '~> 4.0.0'    # scss stylesheets
 gem 'uglifier'                  # javascript compressor
 gem 'coffee-rails'

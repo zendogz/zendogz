@@ -19,6 +19,21 @@ class EnrollmentsController < ApplicationController
   def new
     @course = Course.find(params[:course_id])
     @enrollment = Enrollment.new
+
+    if admin?
+      logger.info('logged in as admin')
+      logger.info('need to build a person: ')
+      @enrollment.build_person()
+    else
+      logger.info('NOT logged in as admin')
+      if current_user
+        @enrollment.course = @course
+        @enrollment.person = current_user
+        @enrollment.status = Code.code_for('enrollment_status', 'pending')
+        @enrollment.enrolled_on = Date.today
+        @enrollment.save
+      end
+    end
   end
 
   # GET /enrollments/1/edit
@@ -28,45 +43,60 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments
   # POST /enrollments.json
   def create
-    @course = Course.find(params[:course_id])
-    @enrollment = Enrollment.new(course: @course)
+    # @course = Course.find(params[:course_id])
+    @enrollment = Enrollment.new(enrollment_params[:enrollment])
+    authorize(@enrollment)
 
+    logger.info('person attributes:')
+    logger.info(enrollment_params[:person])
+    @student = Person.new(enrollment_params[:person])
     if admin?
-      # logged in as admin
-      logger.info('logged in as admin')
-      if enrollment_params[:person]
-        # have a person
-        logger.info('have a person')
-        @student = Person.create(enrollment_params[:person])
-        @enrollment.person = @student
-      else
-        # need to build a person
-        logger.info('need to build a person: ')
-        @person = @enrollment.build_person
-        logger.info(@person.inspect)
-        render 'new'
-        return
-      end
-    else
-      logger.info('NOT logged in as admin')
-      if @current_user
-        # logged in as non-admin
-        logger.info('logged in as non-admin')
-        @enrollment.person = @current_user
-      elsif params[:enrollment]
-        # buil person from params
-        logger.info('not logged in, build student from params')
-        @student = Person.create(enrollment_params[:person])
-        @enrollment.person = @student
-      else
-        # need to build a person
-        logger.info('not logged in, need to build a student: ')
-        @person = @enrollment.build_person
-        logger.info(@person.inspect)
-        render 'new'
-        return
-      end
+      # default password for the new student
+      @student.password = 'foobar'
+      @student.password_confirmation = 'foobar'
+      @student.roles = ['user']
+      @enrollment.status = Code.code_for('enrollment_status', 'active')
     end
+    logger.info(@student.inspect)
+    @enrollment.person = @student
+    @enrollment.enrolled_on = Date.today
+
+    # if admin?
+    #   # logged in as admin
+    #   logger.info('logged in as admin')
+    #   if enrollment_params[:person]
+    #     # have a person
+    #     logger.info('have a person')
+    #     @student = Person.create(enrollment_params[:person])
+    #     @enrollment.person = @student
+    #   else
+    #     # need to build a person
+    #     logger.info('need to build a person: ')
+    #     @person = @enrollment.build_person
+    #     logger.info(@person.inspect)
+    #     render 'new'
+    #     return
+    #   end
+    # else
+    #   logger.info('NOT logged in as admin')
+    #   if @current_user
+    #     # logged in as non-admin
+    #     logger.info('logged in as non-admin')
+    #     @enrollment.person = @current_user
+    #   elsif params[:enrollment]
+    #     # buil person from params
+    #     logger.info('not logged in, build student from params')
+    #     @student = Person.create(enrollment_params[:person])
+    #     @enrollment.person = @student
+    #   else
+    #     # need to build a person
+    #     logger.info('not logged in, need to build a student: ')
+    #     @person = @enrollment.build_person
+    #     logger.info(@person.inspect)
+    #     render 'new'
+    #     return
+    #   end
+    # end
     logger.info(@enrollment.inspect)
 
     respond_to do |format|
@@ -114,6 +144,6 @@ class EnrollmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      params.require(:enrollment).permit(:person_id, :course_id, :status_id, person_attributes: [:name, :email, :password, :password_confirmation, :address, :city, :postal, :phone_home, :phone_cell, :phone_work, :born_on])
+      params.permit({enrollment: [:course_id]}, :person_id, :course_id, :status_id, {person: [:name, :email, :address, :city, :postal, :phone_home, :phone_cell, :phone_work, :born_on]})
     end
 end
