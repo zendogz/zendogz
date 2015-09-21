@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.4'
 
-gem 'mysql2'                        # postgres as the database for Active Record
-gem 'sass-rails', '~> 4.0.0'    # scss stylesheets
+gem 'pg'                        # postgres as the database for Active Record
+gem 'sass-rails'                # scss stylesheets
+gem 'bootstrap-sass'
 gem 'uglifier'                  # javascript compressor
 gem 'coffee-rails'
 gem 'jquery-rails'

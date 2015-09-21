@@ -16,7 +16,7 @@ Zendogs::Application.routes.draw do
     resources :enrollments
   end
 
-  %w[home about services contact].each do |page|
+  %w[home about services contact gallery].each do |page|
     get page, controller: "pages", action: page
   end
 
