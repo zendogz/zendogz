@@ -17,6 +17,7 @@ gem 'kaminari'                  # pagination
 gem 'redcarpet'                 # markdown
 gem 'factory_girl_rails'        # test data generation
 gem 'ice_cube'                  # recurring schedule
+gem 'puma'                      # web server
 
 gem 'byebug',      group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]
