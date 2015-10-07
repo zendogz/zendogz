@@ -11,7 +11,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'                # https://github.com/rails/turbolinks
 gem 'jbuilder'                  # https://github.com/rails/jbuilder
-gem 'bcrypt-ruby'               # needed for has_secure_password
+gem 'bcrypt'                    # needed for has_secure_password
 gem 'pundit'                    # authorization
 gem 'simple_form'               # form builder
 gem 'kaminari'                  # pagination
