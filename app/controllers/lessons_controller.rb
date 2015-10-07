@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
-    #@course = Course.find(params[:course_id])
+    @course = Course.find(params[:course_id])
   end
 
   # GET /lessons/new
@@ -65,14 +65,15 @@ class LessonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lesson
-      @course = Course.find(params[:course_id])
-      @lesson = Lesson.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lesson_params
-      params.require(:lesson).permit(:name, :handout, :lesson_at, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lesson
+    @course = Course.find(params[:course_id])
+    @lesson = Lesson.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lesson_params
+    params.require(:lesson).permit(:name, :handout, :lesson_at, :status)
+  end
 end

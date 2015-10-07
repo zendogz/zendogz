@@ -3,10 +3,10 @@ class Person < ActiveRecord::Base
   has_many :enrollments
   has_many :courses, through: :enrollments
   has_secure_password
-  validates_uniqueness_of :email
+  validates :email, uniqueness: true
   validates :name, :password, :email, presence: true
 
-  ROLES = %w[admin owner user]
+  ROLES = %w(admin owner user)
 
   def roles=(roles)
     self.authority = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum

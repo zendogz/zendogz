@@ -4,7 +4,7 @@ class Dog < ActiveRecord::Base
   validates :name, presence: true
 
   def self.for(user)
-    if (user)
+    if user
       return Dog.all if user.role?(:admin)
       return user.dogs
     end

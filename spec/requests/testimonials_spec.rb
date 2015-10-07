@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Testimonial requests' do
-
   describe 'GET /testimonials' do
     it 'lists testimonials' do
       get testimonials_path
@@ -46,14 +45,14 @@ describe 'Testimonial requests' do
   context 'logged in as admin' do
     let(:admin) { create(:person, roles: ['admin']) }
     before(:each) do
-      post sessions_path, {email: admin.email, password: admin.password}
+      post sessions_path, email: admin.email, password: admin.password
     end
 
     describe 'GET /testimonials/new' do
       it 'shows create form' do
         get new_testimonial_path
         response.status.should be(200)
-        #expect(response.body).to include('New testimonial')
+        # expect(response.body).to include('New testimonial')
       end
     end
 
@@ -70,7 +69,7 @@ describe 'Testimonial requests' do
     describe 'POST /testimonials' do
       it 'creates a testimonial' do
         count = Testimonial.count
-        post testimonials_path, {testimonial: {from: 'somebody', body: 'new testimonial body'}}
+        post testimonials_path, testimonial: { from: 'somebody', body: 'new testimonial body' }
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:show)
@@ -84,7 +83,7 @@ describe 'Testimonial requests' do
       it 'updates a testimonial' do
         testimonial.save
         count = Testimonial.count
-        put testimonial_path(testimonial), {testimonial: {from: 'updated name', body: 'updated body'}}
+        put testimonial_path(testimonial), testimonial: { from: 'updated name', body: 'updated body' }
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:show)
@@ -102,9 +101,8 @@ describe 'Testimonial requests' do
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:index)
-        expect(Testimonial.count).to eq(count -1)
+        expect(Testimonial.count).to eq(count - 1)
       end
     end
   end
-
 end

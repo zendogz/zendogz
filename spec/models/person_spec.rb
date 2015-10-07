@@ -16,17 +16,17 @@ describe Person do
     expect(person).to be_valid
   end
 
-  it "is invalid without a name" do
+  it 'is invalid without a name' do
     person = build(:person, name: nil)
     expect(person).to_not be_valid
   end
 
-  it "is invalid without a password" do
+  it 'is invalid without a password' do
     person = build(:person, password: nil)
     expect(person).to_not be_valid
   end
 
-  it "is invalid without a email" do
+  it 'is invalid without a email' do
     person = build(:person, email: nil)
     expect(person).to_not be_valid
   end
@@ -36,15 +36,15 @@ describe Person do
     expect(person.authority).to eq(1)
     person = build(:person, roles: ['owner'])
     expect(person.authority).to eq(2)
-    person = build(:person, roles: ['admin', 'owner'])
+    person = build(:person, roles: %w(admin owner))
     expect(person.authority).to eq(3)
     person = build(:person, roles: ['user'])
     expect(person.authority).to eq(4)
-    person = build(:person, roles: ['admin', 'user'])
+    person = build(:person, roles: %w(admin user))
     expect(person.authority).to eq(5)
-    person = build(:person, roles: ['owner', 'user'])
+    person = build(:person, roles: %w(owner user))
     expect(person.authority).to eq(6)
-    person = build(:person, roles: ['admin', 'owner', 'user'])
+    person = build(:person, roles: %w(admin owner user))
     expect(person.authority).to eq(7)
   end
 
@@ -54,14 +54,14 @@ describe Person do
     person = build(:person, authority: 2)
     expect(person.roles).to eq ['owner']
     person = build(:person, authority: 3)
-    expect(person.roles).to eq ['admin', 'owner']
+    expect(person.roles).to eq %w(admin owner)
     person = build(:person, authority: 4)
     expect(person.roles).to eq ['user']
     person = build(:person, authority: 5)
-    expect(person.roles).to eq ['admin', 'user']
+    expect(person.roles).to eq %w(admin user)
     person = build(:person, authority: 6)
-    expect(person.roles).to eq ['owner', 'user']
+    expect(person.roles).to eq %w(owner user)
     person = build(:person, authority: 7)
-    expect(person.roles).to eq ['admin', 'owner', 'user']
+    expect(person.roles).to eq %w(admin owner user)
   end
 end

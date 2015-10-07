@@ -3,7 +3,7 @@ class ApplicationPolicy
               :record # Instance upon which action is performed
 
   def initialize(user, record)
-    #raise Pundit::NotAuthorizedError, "Must be signed in shithead!." unless user
+    # raise Pundit::NotAuthorizedError, "Must be signed in shithead!." unless user
     @user   = user
     @record = record
   end
@@ -13,7 +13,7 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(id: record.id).exists?;
+    scope.where(id: record.id).exists?
   end
 
   def new?

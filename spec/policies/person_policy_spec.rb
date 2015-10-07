@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe PersonPolicy do
-
   let!(:admin) { create(:person, authority: 1) }
   let!(:owner) { create(:person, authority: 2) }
   let!(:user)  { create(:person, authority: 4) }
 
   subject { described_class }
 
-  context ".scope" do
+  context '.scope' do
     it 'shows all people to an admin' do
       people = subject::Scope.new(admin, Person).resolve
       expect(people.count).to eq(3)
@@ -27,51 +26,50 @@ describe PersonPolicy do
   end
 
   permissions :show? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, user)
     end
-    it "denies access to another user" do
+    it 'denies access to another user' do
       expect(subject).not_to permit(user, owner)
     end
-    it "allows access to self" do
+    it 'allows access to self' do
       expect(subject).to permit(user, user)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, owner)
     end
   end
 
   permissions :create? do
-    it "allows access to guest" do
+    it 'allows access to guest' do
       expect(subject).to permit(nil, owner)
     end
   end
 
   permissions :update? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, user)
     end
-    it "denies access to another user" do
+    it 'denies access to another user' do
       expect(subject).not_to permit(user, owner)
     end
-    it "allows access to self" do
+    it 'allows access to self' do
       expect(subject).to permit(user, user)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, owner)
     end
   end
 
   permissions :destroy? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, user)
     end
-    it "denies access to a user" do
+    it 'denies access to a user' do
       expect(subject).not_to permit(user, user)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, owner)
     end
   end
-
 end

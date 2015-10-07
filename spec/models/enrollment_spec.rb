@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Enrollment do
-
   it 'has a valid factory' do
     enrollment = build(:enrollment)
     expect(enrollment).to be_valid
@@ -16,5 +15,4 @@ describe Enrollment do
     enrollment = build(:enrollment, course: nil)
     expect(enrollment).to_not be_valid
   end
-
 end

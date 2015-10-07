@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Course requests' do
-
   describe 'GET /courses' do
     it 'lists courses' do
       get courses_path
@@ -46,14 +45,14 @@ describe 'Course requests' do
   context 'logged in as admin' do
     let(:admin) { create(:person, roles: ['admin']) }
     before(:each) do
-      post sessions_path, {email: admin.email, password: admin.password}
+      post sessions_path, email: admin.email, password: admin.password
     end
 
     describe 'GET /courses/new' do
       it 'shows create form' do
         get new_course_path
         response.status.should be(200)
-        #expect(response.body).to include('New Course')
+        # expect(response.body).to include('New Course')
       end
     end
 
@@ -70,7 +69,7 @@ describe 'Course requests' do
     describe 'POST /courses' do
       it 'creates a course' do
         count = Course.count
-        post courses_path, {course: {name: 'new course', description: 'new course description'}}
+        post courses_path, course: { name: 'new course', description: 'new course description' }
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:show)
@@ -84,7 +83,7 @@ describe 'Course requests' do
       it 'updates a course' do
         course.save
         count = Course.count
-        put course_path(course), {course: {name: 'updated name', description: 'updated description'}}
+        put course_path(course), course: { name: 'updated name', description: 'updated description' }
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:show)
@@ -102,9 +101,8 @@ describe 'Course requests' do
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:index)
-        expect(Course.count).to eq(count -1)
+        expect(Course.count).to eq(count - 1)
       end
     end
   end
-
 end

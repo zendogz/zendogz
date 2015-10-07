@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :person do
     sequence(:name) { |n| "test#{n}" }
     password 'pass'
@@ -28,8 +27,8 @@ FactoryGirl.define do
 
   factory :lesson do
     sequence(:name) { |n| "lesson #{n}" }
-    handout "handout"
-    lesson_at Time.now + 3.days
+    handout 'handout'
+    lesson_at Time.zone.now + 3.days
     status nil
   end
 
@@ -39,10 +38,9 @@ FactoryGirl.define do
   end
 
   factory :code do
-    #set Code.new(set_id: 1, code: 'root', description: 'root')
+    # set Code.new(set_id: 1, code: 'root', description: 'root')
     set nil
-    code "new_code"
-    description "new code description"
+    code 'new_code'
+    description 'new code description'
   end
-
 end

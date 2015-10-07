@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-
   # GET /courses
   # GET /courses.json
   def index
@@ -71,9 +70,8 @@ class CoursesController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      params.require(:course).permit(:name, :description)
-    end
-
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def course_params
+    params.require(:course).permit(:name, :description)
+  end
 end

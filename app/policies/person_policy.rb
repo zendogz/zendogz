@@ -1,7 +1,5 @@
 class PersonPolicy < ApplicationPolicy
-
   class Scope < Scope
-
     def resolve
       if user
         user.admin? ? scope.all : scope.where(id: user.id)
@@ -30,5 +28,4 @@ class PersonPolicy < ApplicationPolicy
     # must be admin
     user && user.admin?
   end
-
 end

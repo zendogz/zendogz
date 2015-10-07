@@ -28,7 +28,7 @@
 <hr/>
 
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -41,7 +41,7 @@
             <div class="carousel-inner" role="listbox">
             <% (1..5).each do |index| %>
                 <div class="item <%= index == 1 ? 'active' : '' %>">
-                    <%= image_tag("gallery/#{index}.jpg", size: '651x489') %>
+                    <%= image_tag("gallery/#{index}.jpg", size: '640x480', class: 'center-block') %>
                     <div class="carousel-caption">
                         caption for <%= index %> ...
                     </div>

@@ -9,10 +9,10 @@
             </ol>
 
             <!-- slides -->
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" role="listbox" style="margin: 0 auto;">
             <% (1..17).each do |index| %>
                 <div class="item <%= index == 1 ? 'active' : '' %>">
-                    <%= image_tag("gallery/#{index}.jpg") %>
+                    <%= image_tag("gallery/#{index}.jpg", size: '800x600', class: 'center-block') %>
                     <div class="carousel-caption">
                         caption for <%= index %> ...
                     </div>

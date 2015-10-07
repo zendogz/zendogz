@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe 'Dog requests' do
-
   context 'not logged in as admin or owner' do
-      describe 'GET /dogs' do
+    describe 'GET /dogs' do
       it 'lists dogs' do
         get dogs_path
         response.status.should be(302)
@@ -49,14 +48,14 @@ describe 'Dog requests' do
   context 'logged in as admin' do
     let(:admin) { create(:person, roles: ['admin']) }
     before(:each) do
-      post sessions_path, {email: admin.email, password: admin.password}
+      post sessions_path, email: admin.email, password: admin.password
     end
 
     describe 'GET /dogs/new' do
       it 'shows create form' do
         get new_dog_path
         response.status.should be(200)
-        #expect(response.body).to include('New dog')
+        # expect(response.body).to include('New dog')
       end
     end
 
@@ -73,7 +72,7 @@ describe 'Dog requests' do
     describe 'POST /dogs' do
       it 'creates a dog' do
         count = Dog.count
-        post dogs_path, {dog: {name: 'new dog', colour: 'speckled'}}
+        post dogs_path, dog: { name: 'new dog', colour: 'speckled' }
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:show)
@@ -87,7 +86,7 @@ describe 'Dog requests' do
       it 'updates a dog' do
         dog.save
         count = Dog.count
-        put dog_path(dog), {dog: {name: 'updated name', description: 'updated description'}}
+        put dog_path(dog), dog: { name: 'updated name', description: 'updated description' }
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:show)
@@ -105,9 +104,8 @@ describe 'Dog requests' do
         response.status.should be(302)
         follow_redirect!
         expect(response).to render_template(:index)
-        expect(Dog.count).to eq(count -1)
+        expect(Dog.count).to eq(count - 1)
       end
     end
   end
-
 end

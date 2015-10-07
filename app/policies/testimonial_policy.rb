@@ -1,5 +1,4 @@
 class TestimonialPolicy < ApplicationPolicy
-
   class Scope < Scope
     def resolve
       # everyone can see testimonials
@@ -21,5 +20,4 @@ class TestimonialPolicy < ApplicationPolicy
     # must be admin
     user && user.admin?
   end
-
 end

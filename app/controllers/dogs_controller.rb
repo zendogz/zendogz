@@ -1,5 +1,4 @@
 class DogsController < ApplicationController
-
   # before_filter :authenticate_dog!
   # after_action :verify_authorized
 
@@ -74,9 +73,8 @@ class DogsController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dog_params
-      params.require(:dog).permit(:name, :breed, :colour, :born_on)
-    end
-
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dog_params
+    params.require(:dog).permit(:name, :breed, :colour, :born_on)
+  end
 end

@@ -1,7 +1,5 @@
 class CoursePolicy < ApplicationPolicy
-
   class Scope < Scope
-
     def resolve
       scope.all
     end
@@ -26,5 +24,4 @@ class CoursePolicy < ApplicationPolicy
     # must be admin
     user && user.admin?
   end
-
 end

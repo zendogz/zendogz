@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Testimonial do
-
   it 'has a valid factory' do
     testimonial = build(:testimonial)
     expect(testimonial).to be_valid
@@ -16,5 +15,4 @@ describe Testimonial do
     testimonial = build(:testimonial, body: nil)
     expect(testimonial).to_not be_valid
   end
-
 end

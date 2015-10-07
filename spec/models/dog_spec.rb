@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Dog do
-
   it 'has a valid factory' do
     dog = build(:dog)
     expect(dog).to be_valid
@@ -13,7 +12,6 @@ describe Dog do
   end
 
   context 'view access' do
-
     let!(:cate)  { create(:person, name: 'cate', roles: ['owner']) }
     let!(:chloe) { create(:dog, name: 'chloe', person_id: cate.id) }
     let!(:mark)  { create(:person, name: 'mark', roles: ['admin']) }
@@ -31,5 +29,4 @@ describe Dog do
       expect(Dog.for(nil)).to be nil
     end
   end
-
 end

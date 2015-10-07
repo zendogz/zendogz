@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe CoursePolicy do
-
   let(:admin) { build(:person, authority: 1) }
   let(:owner) { build(:person, authority: 2) }
   let(:user)  { build(:person, authority: 4) }
@@ -9,7 +8,7 @@ describe CoursePolicy do
 
   subject { described_class }
 
-  context ".scope" do
+  context '.scope' do
     it 'shows all courses to an admin' do
       courses = subject::Scope.new(admin, Course).resolve
       expect(courses.count).to eq(1)
@@ -27,34 +26,34 @@ describe CoursePolicy do
   end
 
   permissions :show? do
-    it "allows access to everyone" do
+    it 'allows access to everyone' do
       expect(subject).to permit(user, course)
     end
   end
 
   permissions :create? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, course)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, course)
     end
   end
 
   permissions :update? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, course)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, course)
     end
   end
 
   permissions :destroy? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, course)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, course)
     end
   end

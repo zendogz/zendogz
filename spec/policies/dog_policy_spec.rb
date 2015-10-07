@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe DogPolicy do
-
   let!(:admin) { create(:person, authority: 1) }
   let!(:adam)  { create(:person, authority: 2) }
   let!(:user)  { create(:person, authority: 4) }
@@ -10,7 +9,7 @@ describe DogPolicy do
 
   subject { described_class }
 
-  context ".scope" do
+  context '.scope' do
     it 'shows all dogs to an admin' do
       dogs = subject::Scope.new(admin, Dog).resolve
       expect(dogs.count).to eq(2)
@@ -29,43 +28,43 @@ describe DogPolicy do
   end
 
   permissions :show? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, darby)
     end
-    it "denies access to a user" do
+    it 'denies access to a user' do
       expect(subject).not_to permit(user, darby)
     end
-    it "allows access to an owner" do
+    it 'allows access to an owner' do
       expect(subject).to permit(adam, darby)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, darby)
     end
   end
 
   permissions :create? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, Dog)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Dog)
     end
   end
 
   permissions :update? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, darby)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Dog)
     end
   end
 
   permissions :destroy? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, darby)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Dog)
     end
   end

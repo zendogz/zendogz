@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Code do
-
   it 'has a valid factory' do
     code = build(:code)
     expect(code).to be_valid
@@ -16,5 +15,4 @@ describe Code do
     code = build(:code, description: nil)
     expect(code).to_not be_valid
   end
-
 end

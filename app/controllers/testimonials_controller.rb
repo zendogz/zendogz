@@ -1,5 +1,4 @@
 class TestimonialsController < ApplicationController
-
   # GET /testimonials
   # GET /testimonials.json
   def index
@@ -65,9 +64,8 @@ class TestimonialsController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def testimonial_params
-      params.require(:testimonial).permit(:from, :body)
-    end
-
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def testimonial_params
+    params.require(:testimonial).permit(:from, :body)
+  end
 end

@@ -4,12 +4,11 @@ class Code < ActiveRecord::Base
   validates :code, :description, presence: true
 
   def self.list_for(set)
-    Code.where(code: set).first.members
-  end
-  
-  def self.code_for(set, code)
-    root = Code.where(code: set).first
-    root.members.where(code: code).first
+    Code.find_by(code: set).members
   end
 
+  def self.code_for(set, code)
+    root = Code.find_by(code: set)
+    root.members.find_by(description: code)
+  end
 end

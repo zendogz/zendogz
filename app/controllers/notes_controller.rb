@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-
   # GET /dogs/:dog_id/notes
   # GET /dogs/:dog_id/notes.json
   def index
@@ -11,7 +10,6 @@ class NotesController < ApplicationController
   # GET /dogs/:dog_id/notes/:id.json
   def show
     @note = Note.find(params[:id])
-
   end
 
   # GET /dogs/:dog_id/notes/new
@@ -69,9 +67,8 @@ class NotesController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def note_params
-      params.require(:note).permit(:note)
-    end
-
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def note_params
+    params.require(:note).permit(:note)
+  end
 end

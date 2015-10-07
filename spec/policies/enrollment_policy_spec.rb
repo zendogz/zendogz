@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe EnrollmentPolicy do
-
   let!(:admin) { create(:person, authority: 1) }
   let!(:adam)  { create(:person, authority: 4, name: 'adam') }
   let!(:cate)  { create(:person, authority: 4, name: 'cate') }
@@ -13,7 +12,7 @@ describe EnrollmentPolicy do
 
   subject { described_class }
 
-  context ".scope" do
+  context '.scope' do
     it 'shows all enrollments to an admin' do
       enrollments = subject::Scope.new(admin, Enrollment).resolve
       expect(enrollments.count).to eq(3)
@@ -32,49 +31,49 @@ describe EnrollmentPolicy do
   end
 
   permissions :show? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, adam_course_1)
     end
-    it "denies access to a non-erolled user" do
+    it 'denies access to a non-erolled user' do
       expect(subject).not_to permit(cate, adam_course_1)
     end
-    it "allows access to an erolled user" do
+    it 'allows access to an erolled user' do
       expect(subject).to permit(cate, cate_course_1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, adam_course_1)
     end
   end
 
   permissions :create? do
-    it "allows access to a non-admin" do
+    it 'allows access to a non-admin' do
       expect(subject).to permit(nil, Enrollment)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Enrollment)
     end
   end
 
   permissions :update? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, adam_course_1)
     end
-    it "denies access to a non-erolled user" do
+    it 'denies access to a non-erolled user' do
       expect(subject).not_to permit(cate, adam_course_1)
     end
-    it "allows access to an erolled user" do
+    it 'allows access to an erolled user' do
       expect(subject).to permit(cate, cate_course_1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, adam_course_1)
     end
   end
 
   permissions :destroy? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(adam, adam_course_1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, adam_course_1)
     end
   end

@@ -1,7 +1,5 @@
 class NotePolicy < ApplicationPolicy
-
   class Scope < Scope
-
     def resolve
       if user
         user.admin? ? scope.all : scope.where(dog_id: user.dogs.ids)

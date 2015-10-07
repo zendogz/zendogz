@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe CoursesController do
   describe 'routing' do
-
     it 'routes to #index' do
       get('/courses').should route_to('courses#index')
     end
@@ -12,11 +11,11 @@ describe CoursesController do
     end
 
     it 'routes to #show' do
-      get('/courses/1').should route_to('courses#show', :id => '1')
+      get('/courses/1').should route_to('courses#show', id: '1')
     end
 
     it 'routes to #edit' do
-      get('/courses/1/edit').should route_to('courses#edit', :id => '1')
+      get('/courses/1/edit').should route_to('courses#edit', id: '1')
     end
 
     it 'routes to #create' do
@@ -24,12 +23,11 @@ describe CoursesController do
     end
 
     it 'routes to #update' do
-      put('/courses/1').should route_to('courses#update', :id => '1')
+      put('/courses/1').should route_to('courses#update', id: '1')
     end
 
     it 'routes to #destroy' do
-      delete('/courses/1').should route_to('courses#destroy', :id => '1')
+      delete('/courses/1').should route_to('courses#destroy', id: '1')
     end
-
   end
 end

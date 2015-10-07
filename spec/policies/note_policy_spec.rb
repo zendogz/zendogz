@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe NotePolicy do
-
   let!(:admin) { create(:person, authority: 1) }
   let!(:adam)  { create(:person, authority: 2) }
   let!(:user)  { create(:person, authority: 4) }
@@ -12,7 +11,7 @@ describe NotePolicy do
 
   subject { described_class }
 
-  context ".scope" do
+  context '.scope' do
     it 'shows all notes to an admin' do
       notes = subject::Scope.new(admin, Note).resolve
       expect(notes.count).to eq(3)
@@ -30,45 +29,44 @@ describe NotePolicy do
     end  end
 
   permissions :show? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, note1)
     end
-    it "denies access to a non-owner" do
+    it 'denies access to a non-owner' do
       expect(subject).not_to permit(user, note1)
     end
-    it "allows access to an owner" do
+    it 'allows access to an owner' do
       expect(subject).to permit(adam, note1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, note1)
     end
   end
 
   permissions :create? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, Note)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Note)
     end
   end
 
   permissions :update? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, note1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Note)
     end
   end
 
   permissions :destroy? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, note1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Note)
     end
   end
-
 end

@@ -1,15 +1,13 @@
 class DogPolicy < ApplicationPolicy
-
-	class Scope < Scope
-
-  	def resolve
-    	if user
+  class Scope < Scope
+    def resolve
+      if user
         user.admin? ? scope.all : scope.where(person: user)
-    	else
+      else
         scope.none
       end
-  	end
-	end
+    end
+  end
 
   def show?
     # must be admin or own the dog
@@ -30,5 +28,4 @@ class DogPolicy < ApplicationPolicy
     # must be admin or own the dog
     (user && user.admin?) || record.person == user
   end
-
 end

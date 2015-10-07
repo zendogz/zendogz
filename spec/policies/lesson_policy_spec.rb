@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe LessonPolicy do
-
   let!(:admin) { build(:person, authority: 1) }
   let!(:user)  { build(:person, authority: 4) }
   let!(:course_1) { create(:course) }
@@ -13,7 +12,7 @@ describe LessonPolicy do
 
   subject { described_class }
 
-  context ".scope" do
+  context '.scope' do
     it 'shows all lessons to an admin' do
       lessons = subject::Scope.new(admin, Lesson).resolve
       expect(lessons.count).to eq(4)
@@ -34,44 +33,44 @@ describe LessonPolicy do
   end
 
   permissions :show? do
-    it "denies access to a guest" do
+    it 'denies access to a guest' do
       expect(subject).not_to permit(nil, lesson_1_1)
     end
-    it "denies access to a non-erolled user" do
+    it 'denies access to a non-erolled user' do
       expect(subject).not_to permit(user, lesson_1_1)
     end
-    it "allows access to an erolled user" do
+    it 'allows access to an erolled user' do
       user.enroll(lesson_1_1.course)
       expect(subject).to permit(user, lesson_1_1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, lesson_1_1)
     end
   end
 
   permissions :create? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, Lesson)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, Lesson)
     end
   end
 
   permissions :update? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, lesson_1_1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, lesson_1_1)
     end
   end
 
   permissions :destroy? do
-    it "denies access to a non-admin" do
+    it 'denies access to a non-admin' do
       expect(subject).not_to permit(user, lesson_1_1)
     end
-    it "allows access to an admin" do
+    it 'allows access to an admin' do
       expect(subject).to permit(admin, lesson_1_1)
     end
   end
