@@ -1,5 +1,6 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
+Person.delete_all
 mark = Person.create(
   name: 'mark',
   email: 'mark@raceweb.ca',
@@ -31,6 +32,7 @@ adam = Person.create(
 #
 # Codes
 #
+Code.delete_all
 sets = Code.create({id: 1, set_id: 1, code: 'root', description: 'root'})
 lesson_status = Code.create({id: 2, set: sets, code: 'venue_status', description: 'venue status'})
 lesson_status_active = Code.create({id: 3, set: lesson_status, code: '1', description: 'active'})
@@ -86,11 +88,9 @@ unless ENV["minimal"]
   chloe_note_1 = Note.create(dog: chloe, note: 'chloe whines too much')
 
   test_body_1 = <<-eos
-It is very comforting to know that while we are at work, someone as trustworthy and pet-loving as Mark, is taking care of our lab, Finley. He is reliable, responsive and trustworthy and we would definitely recommend him to anyone looking for pet care or walks. He will truly be impossible to replace and Finn will very much miss the time he spends with Mark and all his dog-buddies.
+It is very comforting to know that while we are at work, someone as trustworthy and pet-loving as Mark, is taking care of our lab, Finley. He is reliable, responsive and trustworthy and we would definitely recommend him to anyone looking for pet care or walks.
 
 Mandy & Cameron
-
-Also, if anyone wants to talk to us they can call me at 403-831-3542
 eos
 
   test_body_2 = <<-eos
@@ -106,10 +106,6 @@ Mark has been indispensable for me and my family in caring for and training my b
 
 Mark has done one-on-one training with me and my family, has provided day care, sleepovers and longer term care and I have absolutely no hesitation in recommending him for any of those services.
 
-I am saddened by the fact that Mark is moving and will not be available to care for Zeus but I feel very fortunate to have been able to experience the excellent care that Mark has provided to Zeus over the past year. I am sure Zeus will miss Mark and the “pack” too.
-
-If you would like to speak to me directly about my comments above, please call me at 403-287-7637.
-
 Sincerely,
 Siobhan Goguen
 eos
@@ -117,7 +113,7 @@ eos
   test_body_4 = <<-eos
 Dear Mark,
 
-I would like to take this opportunity to thank you for taking care of Charley over the past year. The daily walks for Charley were fantastic as he was such a good dog when I got home from work, it gave me time to make dinner and spend time with my family before our evening walk together. You have been very dependable and so calm, such a great leader for my energetic lab. The dog sitting service was exceptional as I never worried about Charley when he was in your care. He always came home well behaved and tired. He even loved the camping trip you took him on when he was just a pup. I know both Charley and I will miss you immensely. You have been a fantastic pack leader and we wish you and your family all the best!
+I would like to take this opportunity to thank you for taking care of Charley over the past year. The daily walks for Charley were fantastic as he was such a good dog when I got home from work, it gave me time to make dinner and spend time with my family before our evening walk together. You have been very dependable and so calm, such a great leader for my energetic lab. The dog sitting service was exceptional as I never worried about Charley when he was in your care. He always came home well behaved and tired. He even loved the camping trip you took him on when he was just a pup.
 eos
 
   test_body_5 = <<-eos
@@ -151,6 +147,7 @@ Sincerely,
 Kim Lambrecht
 eos
 
+  Testimonial.delete_all
   testimonial_1 = Testimonial.create(from: 'Mandy and Cam Dinning (Finn)', body: test_body_1, created_at: 1.hours.ago)
   testimonial_2 = Testimonial.create(from: 'Kim Nixon (Echo and Nova)', body: test_body_2, created_at: 1.days.ago)
   testimonial_3 = Testimonial.create(from: 'Siobhan Goguen (Zeus)', body: test_body_3, created_at: 1.weeks.ago)
@@ -163,11 +160,35 @@ eos
   course_1_schedule.add_recurrence_rule(IceCube::Rule.weekly.day(:tuesday, :thursday).hour_of_day(18).minute_of_hour(30).until(Date.today + 2.months))
   course_1_schedule.add_recurrence_rule(IceCube::Rule.weekly.day(:saturday).hour_of_day(10).minute_of_hour(30).until(Date.today + 2.months))
 
-  course_1 = Course.create(name: 'Take the Lead', description: '$650, includes required training equipment, schedule: course_1_schedule.to_yaml())
+  Course.delete_all
+  course_1 = Course.create(
+    name: 'Take the Lead',
+    description: [
+      'Zen Dogz is proud to present Take The Lead; An 8 week hands on course designed to teach you all of the skills necessary to train and attain harmony with your dog.',
+      'Every dog can be a good dog; it is all in how they are managed. Take The Lead will teach you how easy it really is!',
+      'By the end of the course you\'ll have learned:',
+      'How to manage any behavioral problem.',
+      'How to get your dog to come when it is called!',
+      'How to get your dog to walk in a heel on and off leash.',
+      'Advanced obedience skills in close range and from a distance.',
+      'How to get your dog\'s full attention in both calm and real life distracting environments.',
+      'But best of all you will have gained your dog\'s trust by taking the time to learn how it communicates and views the world; and by showing it that you are a calm and confident pack leader :)',
+      'Learning in our class setting will give you constant support from our expert instructor and assistants, as well as build your confidence around other dogs, people and everyday distractions. Everybody in the class is there for similar reasons and we will all be helping each other reach our goals with our dogs.',
+      'Classes are held 3 times per week. (That\'s 24 fully guided classes!) This course plan is engineered to ensure your success.',
+      '$650.00 per dog.',
+      '$400.00 for each additional dog from the same household.',
+      '** We encourage everyone who handles the dog on a regular basis to participate **',
+      '** Must have at least one handler per dog in attendance **',
+      '** Classes will be held rain or shine, so please dress appropriately **',
+    ].join("\n") + "\n",
+    schedule: course_1_schedule.to_yaml())
+
+  Lesson.delete_all
   lesson_1 = Lesson.create(name: 'sit stay', description: 'teach your dog to sit and stay', handout: 'sit_stay', course: course_1, status: lesson_status_active)
   lesson_2 = Lesson.create(name: 'lay down', description: 'teach your dog to lay down', handout: 'down', course: course_1, status: lesson_status_active)
   lesson_3 = Lesson.create(name: 'off leash', description: 'teach your dog to not run away', handout: 'off_leash', course: course_1, status: lesson_status_active)
 
+  Enrollment.delete_all
   enrollment_1 = Enrollment.create(person: cate, course: course_1, status: enrollment_status_active, enrolled_on: 1.days.ago)
   enrollment_2 = Enrollment.create(person: adam, course: course_1, status: enrollment_status_active, enrolled_on: 9.days.ago)
   enrollment_3 = Enrollment.create(person: eva,  course: course_1, status: enrollment_status_expired, enrolled_on: 6.months.ago)
