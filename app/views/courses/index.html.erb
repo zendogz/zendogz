@@ -19,9 +19,6 @@
 <h1>Listing courses</h1>
 
 <table>
-    <thead>
-        <tr><th>Name</th><th>Description</th><th colspan="4">&nbsp;</th></tr>
-    </thead>
 
     <tbody>
     <% @courses.each do |course| %>
@@ -33,18 +30,11 @@
                     </div>
                     <div class="panel-body">
                         <%= course.description %>
+                        <%= link_to('Show', course) if policy(course).show? %> |
+                        <%= link_to('Edit', edit_course_path(course)) if policy(course).update? %> |
+                        <%= link_to('Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }) if policy(course).destroy? %>
                     </div>
                 </div>
-            </td>
-
-            <td>
-                <%= link_to('Show', course) if policy(course).show? %>
-            </td>
-            <td>
-                <%= link_to('Edit', edit_course_path(course)) if policy(course).update? %>
-            </td>
-            <td>
-                <%= link_to('Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }) if policy(course).destroy? %>
             </td>
             <td>
                 <% if current_user && current_user.enrolled?(course) %>
