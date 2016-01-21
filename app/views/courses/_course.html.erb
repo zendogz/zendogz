@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= course.name %></h3>
+    </div>
+    <div class="panel-body">
+        <div id="course-description">
+            <%= markdown course.description %>
+        </div>
+        <%= link_to('Edit', edit_course_path(course)) if policy(course).update? %>
+        <%= link_to('Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }) if policy(course).destroy? %>
+        <% if current_user && current_user.enrolled?(course) %>
+            | enrolled
+        <% elsif policy(Enrollment).new? %>
+            | <%= link_to('Enroll', new_course_enrollment_path(course), remote: true) %>
+        <% end %>
+    </div>
+</div>
