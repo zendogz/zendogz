@@ -1,6 +1,13 @@
 README
 ====================
 
+TODO:
+-------
+upload pictures for each course.
+edit more header pictures
+x use redcarpet for course description
+
+
 Notes:
 ------
 

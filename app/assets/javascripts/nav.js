@@ -17,6 +17,14 @@
 			var blob;
 			var reset;
 
+			if (currentPageItem.length > 0 ) {
+				console.log('have currentPageItem');
+			} else {
+				console.log('no currentPageItem');
+				currentPageItem = $('#nav-links li').first();
+				console.log(currentPageItem);
+			}
+
 		 	$('<li id="blob"></li>').css({
 		 		width : currentPageItem.outerWidth(),
 		 		height : currentPageItem.outerHeight() + options.overlap,
