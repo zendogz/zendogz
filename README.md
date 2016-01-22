@@ -4,8 +4,9 @@ README
 TODO:
 -------
 upload pictures for each course.
-edit more header pictures
+x edit more header pictures
 x use redcarpet for course description
+in place editing for course description and testimonials
 
 
 Notes:
