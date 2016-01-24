@@ -10,7 +10,7 @@
 
             <!-- slides -->
             <div class="carousel-inner" role="listbox" style="margin: 0 auto;">
-            <% (1..64).shuffle.each do |index| %>
+            <% (1..64).to_a.shuffle.each do |index| %>
                 <div class="item <%= index == 1 ? 'active' : '' %>">
                     <%= image_tag("gallery/#{index}.jpg", height: '600', class: 'center-block') %>
                     <div class="carousel-caption">
