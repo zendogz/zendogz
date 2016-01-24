@@ -29,8 +29,8 @@
                         <% c = params[:controller]; a = params[:action]; %>
                         <%= content_tag(:li, link_to('home', root_path), a.include?('home') ? {class: 'selected'} : nil) %>
                         <%= content_tag(:li, link_to('about', about_path), a.include?('about') ? {class: 'selected'} : nil) %>
+                        <%= content_tag(:li, link_to('my dogs', dogs_path), c.include?('dogs') ? {class: 'selected'} : nil) if current_user %>
                         <%= content_tag(:li, link_to('services', services_path), a.include?('services') ? {class: 'selected'} : nil) %>
-                        <%= content_tag(:li, link_to('contact', contact_path), a.include?('contact') ? {class: 'selected'} : nil) %>
                         <%= content_tag(:li, link_to('training', courses_path), c.include?('courses') ? {class: 'selected'} : nil) %>
                         <%= content_tag(:li, link_to('testimonials', testimonials_path), c.include?('testimonials') ? {class: 'selected'} : nil) %>
                         <%= content_tag(:li, link_to('gallery', gallery_path), a.include?('galler') ? {class: 'selected'} : nil) %>
@@ -85,6 +85,8 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <strong>give us a bark: <a href="mailto:zendogz3@gmail.com">zendogz3@gmail.com</a>, or (250) 686-3325</strong>
+                    &nbsp;[<%= link_to('contact us', contact_path, class: 'btn btn-link btn-xs') %>]
+
                 </div>
             </div>
 
