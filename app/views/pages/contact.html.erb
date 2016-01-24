@@ -1,2 +1,21 @@
-<h1>Pages#contact</h1>
-<p>Find me in app/views/pages/contact.html.erb</p>
+<h1>contact us</h1>
+
+<span class="glyphicon glyphicon-envelope btn-lg"></span> email: <%= Zendogs::CONTACT_EMAIL %><br>
+<span class="glyphicon glyphicon-phone btn-lg"></span> phone: (250) 686-3325<br>
+<span class="glyphicon glyphicon-globe btn-lg"></span> web: <%= root_url %><br>
+<span class="glyphicon glyphicon-comment btn-lg"></span> or send us a message:<br>
+
+<%= form_tag contact_path, method: :put do %>
+    <div class="form-group col-md-8">
+        <%= label_tag(:email, 'your email') %>
+        <%= text_field_tag(:email, '', class: 'form-control') %>
+    </div>
+    <div class="form-group col-md-8">
+        <%= label_tag(:message, 'what\'s on your mind?') %>
+        <%= text_area_tag(:message, nil, size: "24x6", placeholder: 'what\'s on your mind?', class: 'form-control') %>
+    </div>
+    <div class="form-group col-md-8">
+        <%= button_tag :submit, class: 'btn btn-primary' do 'send' end %>
+        <%= link_to 'cancel', root_path, class: 'btn btn-link' %>
+    </div>
+<% end %>

@@ -16,6 +16,8 @@ Zendogs::Application.routes.draw do
     resources :enrollments
   end
 
+  put 'contact', to: 'pages#contact', as: 'contact'
+
   %w[home about services contact gallery].each do |page|
     get page, controller: "pages", action: page
   end
