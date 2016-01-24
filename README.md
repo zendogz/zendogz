@@ -3,10 +3,15 @@ README
 
 TODO:
 -------
-upload pictures for each course.
-x edit more header pictures
-x use redcarpet for course description
-in place editing for course description and testimonials
+[ ] upload pictures for each course.
+[x] edit more header pictures
+[x] use redcarpet for course description
+[ ] in place editing for course description and testimonials
+[ ] gallery for each course
+[ ] captions for the gallery from a yaml file
+[ ] gallery on home page changing height
+[ ] fix logout drop down
+[ ] fix enroll link (remove until it's fixed)
 
 
 Notes:
