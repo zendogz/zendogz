@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   end
 
   def contact
+    puts "!!!send: #{params[:message]}!!!" if params[:message].present?
   end
 
   def gallery
