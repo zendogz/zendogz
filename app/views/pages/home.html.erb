@@ -27,6 +27,11 @@
 
 <hr/>
 
+<% if @testimonials %>
+    <h1>testimonials</h1>
+    <%= render @testimonials %>
+<% end %>
+
 <div class="row">
     <div class="col-md-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -62,10 +67,3 @@
         </div>
     </div>
 </div>
-
-<hr/>
-
-<% if @testimonials %>
-    <h1>testimonials</h1>
-    <%= render @testimonials %>
-<% end %>
