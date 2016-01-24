@@ -1,11 +1,12 @@
 <h1>contact us</h1>
 
-<span class="glyphicon glyphicon-envelope btn-lg"></span> email: <%= Zendogs::CONTACT_EMAIL %><br>
-<span class="glyphicon glyphicon-phone btn-lg"></span> phone: (250) 686-3325<br>
-<span class="glyphicon glyphicon-globe btn-lg"></span> web: <%= root_url %><br>
-<span class="glyphicon glyphicon-comment btn-lg"></span> or send us a message:<br>
+<span class="glyphicon glyphicon-envelope" style="font-size:1.5em"></span> <strong>email:</strong> <%= Zendogs::CONTACT_EMAIL %><br>
+<span class="glyphicon glyphicon-phone" style="font-size:1.5em"></span> <strong>phone:</strong> (250) 686-3325<br>
+<span class="glyphicon glyphicon-globe" style="font-size:1.5em"></span> <strong>web:</strong> <%= root_url %><br>
+<span class="glyphicon glyphicon-comment" style="font-size:1.5em"></span> <strong>or</strong> send us a message:
+<p>
 
-<%= form_tag '/contact', method: :put do %>
+<%= form_tag contact_path, method: :put do %>
     <div class="form-group col-md-8">
         <%= label_tag(:email, 'your email') %>
         <%= text_field_tag(:email, '', class: 'form-control') %>

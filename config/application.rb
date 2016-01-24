@@ -33,5 +33,13 @@ module Zendogs
 
     # use spec fixtures
     # ActiveRecord::Tasks::DatabaseTasks.fixtures_path = "#{::Rails.root}/spec/fixtures"
+
+    # load env variables from config/application.yml
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'application.yml')
+      YAML.load(File.open(env_file)).each do |env, keys|
+        keys.each { |key, value| ENV[key.to_s] = value } if Rails.env == env
+      end if File.exists?(env_file)
+    end
   end
 end

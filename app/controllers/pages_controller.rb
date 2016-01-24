@@ -10,7 +10,10 @@ class PagesController < ApplicationController
   end
 
   def contact
-    puts "!!!send: #{params[:message]}!!!" if params[:message].present?
+    if params[:message].present?
+      ContactMailer.contact_message(params[:message], params[:email]).deliver_now
+      flash[:success] = 'message sent successfully.'
+    end
   end
 
   def gallery

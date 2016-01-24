@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: Zendogs::CONTACT_EMAIL
   layout 'mailer'
 end

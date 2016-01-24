@@ -12,6 +12,7 @@ TODO:
 [ ] gallery on home page changing height
 [ ] fix logout drop down
 [ ] fix enroll link (remove until it's fixed)
+[x] contact form, email message
 
 
 Notes:
@@ -19,6 +20,9 @@ Notes:
 
 ### bootstrap:
 - removed bootstrap-sass gem and added bootstrap sass files from [sass-twitter-bootstrap](https://github.com/jlong/sass-twitter-bootstrap) to vendor/assets as per answer [here](http://stackoverflow.com/a/15868449).
+
+### email
+- enable smtp sending from less secure apps: https://www.google.com/settings/security/lesssecureapps
 
 Permissions:
 ------------
