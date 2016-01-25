@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @testimonials = Testimonial.all.to_a
+    @gallery_indexes = (1..65).to_a.shuffle
   end
 
   def about
@@ -17,5 +18,6 @@ class PagesController < ApplicationController
   end
 
   def gallery
+    @gallery_indexes = (1..65).to_a.shuffle
   end
 end

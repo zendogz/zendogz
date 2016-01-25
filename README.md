@@ -9,7 +9,7 @@ TODO:
 [ ] in place editing for course description and testimonials
 [ ] gallery for each course
 [ ] captions for the gallery from a yaml file
-[ ] gallery on home page changing height
+[x] gallery on home page changing height
 [ ] fix logout drop down
 [ ] fix enroll link (remove until it's fixed)
 [x] contact form, email message
@@ -21,8 +21,9 @@ Notes:
 ### bootstrap:
 - removed bootstrap-sass gem and added bootstrap sass files from [sass-twitter-bootstrap](https://github.com/jlong/sass-twitter-bootstrap) to vendor/assets as per answer [here](http://stackoverflow.com/a/15868449).
 
-### email
+### gmail sending email
 - enable smtp sending from less secure apps: https://www.google.com/settings/security/lesssecureapps
+- also may need to visit this: https://accounts.google.com/DisplayUnlockCaptcha
 
 Permissions:
 ------------

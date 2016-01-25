@@ -25,34 +25,19 @@
     </div>
 </div>
 
-<hr/>
-
-<% if @testimonials %>
-    <h1>testimonials</h1>
-    <%= render @testimonials %>
-<% end %>
-
 <div class="row">
     <div class="col-md-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-            <% (1..5).each do |index| %>
-                <li data-target="#carousel-example-generic" data-slide-to="<%= index - 1 %>" class="<%= index == 1 ? 'active' : '' %>"></li>
-            <% end %>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-            <% (1..64).to_a.shuffle.each do |index| %>
+            <!-- slides -->
+            <div class="carousel-inner" role="listbox"  style="margin: 0 auto;">
+            <% @gallery_indexes.each do |index| %>
                 <div class="item <%= index == 1 ? 'active' : '' %>">
-                    <%= image_tag("gallery/#{index}.jpg", size: '640x480', class: 'center-block') %>
+                    <%= image_tag("gallery/#{index}.jpg", height: '600', class: 'center-block') %>
                     <div class="carousel-caption">
                         caption for <%= index %> ...
                     </div>
                 </div>
             <% end %>
-
           </div>
 
           <!-- Controls -->
@@ -67,3 +52,9 @@
         </div>
     </div>
 </div>
+
+<% if @testimonials %>
+    <h1>testimonials</h1>
+    <hr/>
+    <%= render @testimonials %>
+<% end %>

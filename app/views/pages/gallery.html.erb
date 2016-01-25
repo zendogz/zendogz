@@ -1,16 +1,9 @@
 <div class="row">
     <div class="col-md-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- indicators -->
-            <ol class="carousel-indicators">
-            <% (1..17).each do |index| %>
-                <li data-target="#carousel-example-generic" data-slide-to="<%= index - 1 %>" class="<%= index == 1 ? 'active' : '' %>"></li>
-            <% end %>
-            </ol>
-
             <!-- slides -->
             <div class="carousel-inner" role="listbox" style="margin: 0 auto;">
-            <% (1..64).to_a.shuffle.each do |index| %>
+            <% @gallery_indexes.each do |index| %>
                 <div class="item <%= index == 1 ? 'active' : '' %>">
                     <%= image_tag("gallery/#{index}.jpg", height: '600', class: 'center-block') %>
                     <div class="carousel-caption">
