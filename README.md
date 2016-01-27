@@ -25,6 +25,10 @@ Notes:
 - enable smtp sending from less secure apps: https://www.google.com/settings/security/lesssecureapps
 - also may need to visit this: https://accounts.google.com/DisplayUnlockCaptcha
 
+godaddy
+  this ip was in the DNS settings. not sure what it is but don't want to loose it in case i need it again
+  184.168.221.20
+
 Permissions:
 ------------
 
