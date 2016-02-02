@@ -20,7 +20,7 @@
 
 // hide success messages after 3 seconds
 window.setTimeout(function() {
-    $(".alert-success").fadeTo(500, 0).slideUp(500, function() {
+    $('.alert-success, .alert-info').fadeTo(500, 0).slideUp(500, function() {
         $(this).remove();
     });
 }, 3000);

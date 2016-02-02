@@ -96,12 +96,12 @@
                     <%= link_to 'debug', debug_path, remote: true if Rails.env.development? %>
 
                     <!-- flash messages -->
-                    <% flash.each do |key, value| %>
-                        <%
-                            cls = 'danger' if key.to_s.eql?('alert')
-                            cls = 'success' if key.to_s.eql?('notice')
-                        %>
-                        <div class="alert alert-block alert-dismissable alert-<%= cls %>">
+                    <% flash.each do |key, value|
+                        clas = 'info'
+                        clas = 'danger' if key.eql?('alert')
+                        clas = 'success' if key.eql?('notice')
+                    %>
+                        <div class="alert alert-block alert-dismissable alert-<%= clas %>">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4 class="alert-heading"><%= key %>:</h4>
                             <%= value %>
