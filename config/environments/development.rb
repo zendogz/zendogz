@@ -38,4 +38,16 @@ Zendogs::Application.configure do
     authentication:       'login',
     enable_starttls_auto: true
   }
+
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.zoho.com',
+  #   port:                 465,
+  #   domain:               'raceweb.ca',
+  #   user_name:            ENV['SMTP_USERNAME'],
+  #   password:             ENV['SMTP_PASSWORD'],
+  #   authentication:       :plain,
+  #   ssl:                  true,
+  #   tls:                  true,
+  #   enable_starttls_auto: true
+  # }
 end
