@@ -40,4 +40,8 @@ class Person < ActiveRecord::Base
   def enrolled?(course)
     courses.include?(course) if course
   end
+
+  def login(session)
+    session[:user_id] = id
+  end
 end
