@@ -3,6 +3,7 @@ README
 
 TODO:
 -------
+[ ] change origin to mark's own github account
 [ ] upload pictures for each course.
 [x] edit more header pictures
 [x] use redcarpet for course description
