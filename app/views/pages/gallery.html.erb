@@ -7,7 +7,7 @@
                 <div class="item <%= index == 1 ? 'active' : '' %>">
                     <%= image_tag("gallery/#{index}.jpg", height: '600', class: 'center-block') %>
                     <div class="carousel-caption">
-                        caption for <%= index %> ...
+                        <%= @gallery_captions[index] %>
                     </div>
                 </div>
             <% end %>

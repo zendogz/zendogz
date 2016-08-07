@@ -19,5 +19,6 @@ class PagesController < ApplicationController
 
   def gallery
     @gallery_indexes = (1..65).to_a.shuffle
+    @gallery_captions = YAML.load_file("#{Rails.root.to_s}/config/gallery_captions.yml")
   end
 end
