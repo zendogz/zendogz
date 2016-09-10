@@ -18,6 +18,6 @@ class PagesController < ApplicationController
   end
 
   def gallery
-    @gallery_indexes = (1..65).to_a.shuffle
+    @gallery_indexes = (1..66).to_a.shuffle
   end
 end
