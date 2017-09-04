@@ -8,7 +8,6 @@ gem 'bootstrap-sass'
 group :assets do
   gem 'sass-rails'                # scss stylesheets
   gem 'uglifier'                  # javascript compressor
-  gem 'coffee-rails'
 end
 
 group :test do
