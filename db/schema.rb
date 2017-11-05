@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,15 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20140325033413) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "codes", force: :cascade do |t|
     t.integer  "set_id"
     t.string   "code"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["set_id"], name: "index_codes_on_set_id", using: :btree
   end
-
-  add_index "codes", ["set_id"], name: "index_codes_on_set_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -39,9 +40,8 @@ ActiveRecord::Schema.define(version: 20140325033413) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["person_id"], name: "index_dogs_on_person_id", using: :btree
   end
-
-  add_index "dogs", ["person_id"], name: "index_dogs_on_person_id", using: :btree
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "person_id"
@@ -50,11 +50,10 @@ ActiveRecord::Schema.define(version: 20140325033413) do
     t.date     "enrolled_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["course_id"], name: "index_enrollments_on_course_id", using: :btree
+    t.index ["person_id"], name: "index_enrollments_on_person_id", using: :btree
+    t.index ["status_id"], name: "index_enrollments_on_status_id", using: :btree
   end
-
-  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
-  add_index "enrollments", ["person_id"], name: "index_enrollments_on_person_id", using: :btree
-  add_index "enrollments", ["status_id"], name: "index_enrollments_on_status_id", using: :btree
 
   create_table "lessons", force: :cascade do |t|
     t.string   "name"
@@ -65,19 +64,17 @@ ActiveRecord::Schema.define(version: 20140325033413) do
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["course_id"], name: "index_lessons_on_course_id", using: :btree
+    t.index ["status_id"], name: "index_lessons_on_status_id", using: :btree
   end
-
-  add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
-  add_index "lessons", ["status_id"], name: "index_lessons_on_status_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.integer  "dog_id"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["dog_id"], name: "index_notes_on_dog_id", using: :btree
   end
-
-  add_index "notes", ["dog_id"], name: "index_notes_on_dog_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
