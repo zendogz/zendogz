@@ -36,10 +36,16 @@ module Zendogs
 
     # load env variables from config/application.yml
     config.before_configuration do
-      env_file = File.join(Rails.root, 'config', 'application.yml')
-      YAML.load(File.open(env_file)).each do |env, keys|
-        keys.each { |key, value| ENV[key.to_s] = value } if Rails.env == env
-      end if File.exists?(env_file)
+      env_file = Rails.root.join('config', 'application.yml')
+      if File.exist?(env_file)
+        YAML.safe_load(File.open(env_file)).each do |env, keys|
+          next unless Rails.env == env
+          keys.each do |key, value|
+            # puts "#{Rails.env}: #{env}, #{key} = #{value}"
+            ENV[key.to_s] = value
+          end
+        end
+      end
     end
   end
 end
