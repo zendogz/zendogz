@@ -1,14 +1,10 @@
 AllCops:
-  Include:
-    - '**/Rakefile'
-    - '**/config.ru'
   Exclude:
     - db/**/*
     - config/**/*
     - script/**/*
     - vendor/**/*
     - bin/*
-  RunRailsCops: true
   DisplayCopNames: true
   DisplayStyleGuide: true
 
@@ -20,3 +16,6 @@ Style/Documentation:
 
 Metrics/MethodLength:
   Max: 15
+
+Rails:
+  Enabled: true

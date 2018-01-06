@@ -16,87 +16,87 @@ ActiveRecord::Schema.define(version: 20140325033413) do
   enable_extension "plpgsql"
 
   create_table "codes", force: :cascade do |t|
-    t.integer  "set_id"
-    t.string   "code"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["set_id"], name: "index_codes_on_set_id", using: :btree
+    t.bigint "set_id"
+    t.string "code"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["set_id"], name: "index_codes_on_set_id"
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "schedule"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.text "description"
+    t.text "schedule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dogs", force: :cascade do |t|
-    t.string   "name"
-    t.string   "breed"
-    t.string   "colour"
-    t.date     "born_on"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["person_id"], name: "index_dogs_on_person_id", using: :btree
+    t.string "name"
+    t.string "breed"
+    t.string "colour"
+    t.date "born_on"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_dogs_on_person_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer  "person_id"
-    t.integer  "course_id"
-    t.integer  "status_id"
-    t.date     "enrolled_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["course_id"], name: "index_enrollments_on_course_id", using: :btree
-    t.index ["person_id"], name: "index_enrollments_on_person_id", using: :btree
-    t.index ["status_id"], name: "index_enrollments_on_status_id", using: :btree
+    t.bigint "person_id"
+    t.bigint "course_id"
+    t.bigint "status_id"
+    t.date "enrolled_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["person_id"], name: "index_enrollments_on_person_id"
+    t.index ["status_id"], name: "index_enrollments_on_status_id"
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "handout"
+    t.string "name"
+    t.text "description"
+    t.string "handout"
     t.datetime "lesson_at"
-    t.integer  "course_id"
-    t.integer  "status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["course_id"], name: "index_lessons_on_course_id", using: :btree
-    t.index ["status_id"], name: "index_lessons_on_status_id", using: :btree
+    t.bigint "course_id"
+    t.bigint "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["status_id"], name: "index_lessons_on_status_id"
   end
 
   create_table "notes", force: :cascade do |t|
-    t.integer  "dog_id"
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["dog_id"], name: "index_notes_on_dog_id", using: :btree
+    t.bigint "dog_id"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_notes_on_dog_id"
   end
 
   create_table "people", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "address"
-    t.string   "city"
-    t.string   "postal"
-    t.string   "phone_home"
-    t.string   "phone_cell"
-    t.string   "phone_work"
-    t.integer  "authority"
-    t.date     "born_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "address"
+    t.string "city"
+    t.string "postal"
+    t.string "phone_home"
+    t.string "phone_cell"
+    t.string "phone_work"
+    t.integer "authority"
+    t.date "born_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "testimonials", force: :cascade do |t|
-    t.string   "from"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "from"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

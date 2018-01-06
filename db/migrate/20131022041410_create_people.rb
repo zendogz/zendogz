@@ -1,4 +1,4 @@
-class CreatePeople < ActiveRecord::Migration
+class CreatePeople < ActiveRecord::Migration[5.1]
   def change
     create_table :people do |t|
       t.string :name
@@ -17,4 +17,3 @@ class CreatePeople < ActiveRecord::Migration
     end
   end
 end
-

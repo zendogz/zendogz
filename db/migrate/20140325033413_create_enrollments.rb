@@ -1,4 +1,4 @@
-class CreateEnrollments < ActiveRecord::Migration
+class CreateEnrollments < ActiveRecord::Migration[5.1]
   def change
     create_table :enrollments do |t|
       t.references :person, index: true
